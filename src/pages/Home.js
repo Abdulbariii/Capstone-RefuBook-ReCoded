@@ -1,5 +1,8 @@
 import React from 'react';
+import Title from '../components/home-components/Title';
 
 export default function Home() {
-  return <div className="text-7xl">Home</div>;
+  return <div>
+    <Title />
+  </div>;
 }
