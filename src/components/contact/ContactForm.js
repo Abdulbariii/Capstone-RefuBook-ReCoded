@@ -39,7 +39,7 @@ export default function ContactForm() {
     <div className="flex gap-6 flex-col items-start justify-start">
       {emailIsPending ? <Notification state="pending" /> : null}
       {emailSent ? <Notification state="sent" /> : null}
-      <h1 className="text-[#4699C2] font-bold text-[64px] mb-6">
+      <h1 className="text-[#4699C2] font-bold text-[64px] mb-2">
         Get in Touch
       </h1>
       <p className="text-[16px]  w-[362px] text-start font-extralight">
