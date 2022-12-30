@@ -9,7 +9,7 @@ function About() {
                 <p className='text-[1.75rem] text-center font-medium text-[#4699C2] '>About</p>
             </div>
             <div>
-                <p className='text-sm font-normal text-[#3F3B3B] lg:w-[39.835rem] w-[23.563rem]  ' >In quo quaerimus, non emolumento aliquo, sed ipsius honestatis decore laudandis, id est et quas molestias excepturi sint, obcaecati cupiditate non numquam eius modi tempora incidunt, ut earum rerum hic tenetur a natura ipsa natura incorrupte atque integre iudicante itaque aiunt hanc quasi involuta aperiri.</p>
+                <p className='text-sm font-normal text-[#3F3B3B] lg:w-[39.835rem] w-[23.563rem] px-4' >In quo quaerimus, non emolumento aliquo, sed ipsius honestatis decore laudandis, id est et quas molestias excepturi sint, obcaecati cupiditate non numquam eius modi tempora incidunt, ut earum rerum hic tenetur a natura ipsa natura incorrupte atque integre iudicante itaque aiunt hanc quasi involuta aperiri.</p>
             </div>
 
             <div>
