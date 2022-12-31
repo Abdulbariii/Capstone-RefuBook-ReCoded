@@ -36,7 +36,7 @@ function Testimoniol() {
     return (
         <section className='lg:px-40 px-14 lg:py-32 py-10 flex lg:flex-row flex-col gap-6 justify-between lg:items-start items-center '>
             <WorldMap />
-            <div className="lg:w-[25.071rem] w-[19.5rem] ">
+            <div className="testimoniol lg:w-[25.071rem] w-[19.5rem] ">
                 <Swiper className='pb-14 '
 
                     slidesPerView={1}
