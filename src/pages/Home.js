@@ -9,12 +9,10 @@ export default function Home() {
   return <div>
     <Title />
     <div className='bg-[#e5faff] '>
-
       <About />
       <Features />
     </div>
-    <Testimoniol />
-    <Partners />
-
+    <Testimoniol bgColor="bg-[white]" textColor="text-black" />
+    <Partners font="font-['Fira Sans']" fontWeight="font-medium" textSize="text-2xl" textColorScreen="lg:text-black" textColorMobile="text-black" />
   </div>;
 }

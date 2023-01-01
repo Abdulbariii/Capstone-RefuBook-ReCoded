@@ -8,7 +8,7 @@ import 'swiper/swiper.min.css';
 
 SwiperCore.use([EffectCoverflow, Pagination]);
 
-function Partners() {
+function Partners({ font, fontWeight, textSize, textColorScreen, textColorMobile }) {
     const images = ["https://refugeeresearch.net/wp-content/uploads/2015/11/isim.gif",
         "https://refugeeresearch.net/wp-content/uploads/2015/11/rliul.gif",
         "https://refugeeresearch.net/wp-content/uploads/2015/11/oxrsc.gif",
@@ -25,7 +25,9 @@ function Partners() {
             <hr className="lg:block hidden h-[1px] bg-gray-200 border-0 dark:bg-gray-700" />
 
             <div className='px-9 lg:py-6 pb-6 m-auto'>
-                <div className='font-["Fira Sans"] font-medium text-2xl pb-10 text-center'>Our Partners</div>
+                <div className={`${font} ${fontWeight} ${textSize} ${textColorScreen} ${textColorMobile} pb-10 text-center`}>Our Partners</div>
+                {/* <div className={`font-["Fira Sans"] font-medium text-2xl pb-10 text-center`}>Our Partners</div> */}
+
                 <Swiper
                     slidesPerView={1}
                     spaceBetween={10}
