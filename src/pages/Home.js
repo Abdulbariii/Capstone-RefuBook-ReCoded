@@ -9,7 +9,7 @@ export default function Home() {
     <div className='bg-[#e5faff] '>
       <About />
     </div>
-    <Testimoniol />
+    <Testimoniol bgColor="bg-[white]" textColor="text-black" />
 
   </div>;
 }
