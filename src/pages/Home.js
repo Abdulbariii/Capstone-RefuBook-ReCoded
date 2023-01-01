@@ -8,10 +8,10 @@ export default function Home() {
   return <div>
     <Title />
     <div className='bg-[#e5faff] '>
-
       <About />
       <Features />
     </div>
-    <Testimoniol />
+    <Testimoniol bgColor="bg-[white]" textColor="text-black" />
+
   </div>;
 }
