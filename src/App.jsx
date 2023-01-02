@@ -8,7 +8,7 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Blog from './pages/Blog';
-
+import Footer from './components/Footer';
 import './App.css';
 
 function App() {
@@ -24,6 +24,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
+      <Footer/> 
     </div>
   );
 }
