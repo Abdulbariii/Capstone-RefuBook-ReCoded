@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <section className=" absolute top-0 left-0 right-0 font-sans m-auto flex justify-between items-center  p-9 lg:px-40 px-14 ">
+
+    <section className=" absolute top-0 left-0 right-0 font-sans  flex justify-between items-center  lg:py-10 lg:px-40 py-6 px-4 ">
       <div className="text-[#026FC2] flex items-center justify-center">
         <svg
           className="lg:w-[25px] w-[16px]"
@@ -60,25 +61,26 @@ export default function Navbar() {
         </NavLink>
         <NavLink
           className={({ isActive }) =>
-            isActive ? ` underline text-[#4699C2] ` : ` `
+            isActive ? ' underline text-[#4699C2] ' : ' '
           }
           to="/contact"
         >
           Contact
         </NavLink>
-        <NavLink
-          className={({ isActive }) =>
-            isActive ? ` underline text-[#4699C2] ` : ` `
-          }
-          to="/signup"
-        >
-          <button
-            type="button"
-            className="inline-block   px-7 py-1.5  bg-[#4699C2] text-white font-bold text-sm rounded-[50px] shadow-md hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
+        <div className='hidden lg:block '>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? ` underline text-[#4699C2] ` : ` `
+            }
+            to="/signup"
           >
-            Sign up
-          </button>
-        </NavLink>
+            <button
+              type="button"
+              className="inline-block   px-7 py-1.5  bg-[#4699C2] text-white font-bold text-sm rounded-[50px] shadow-md hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
+            >
+              Sign up
+            </button>
+          </NavLink></div>
       </div>
     </section>
   );
