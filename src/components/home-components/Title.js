@@ -6,7 +6,7 @@ import { ImageTitle } from "../../assets/images/Image"
 
 function Title() {
   return (
-    <section className=" lg:px-40 px-14 lg:py-40 py-24 flex lg:flex-row flex-col-reverse justify-between items-center lg:border-r-4 lg:border-b-4 lg:border-[#70cdd6]  ">
+    <section className=" lg:px-24 px-14 lg:py-40 py-24 flex lg:flex-row flex-col-reverse justify-between items-center lg:border-r-4 lg:border-b-4 lg:border-[#70cdd6]  ">
       <div className="flex flex-col lg:gap-5 lg:text-left text-center ">
         <p className="font-sans lg:text-7xl text-4xl font-black  tracking-normal text-[#4699C2] lg:leading-[84.38px] leading-10 mt-6 lg:mt-0">
           Refubook
