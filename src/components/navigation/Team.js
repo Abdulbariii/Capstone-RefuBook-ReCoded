@@ -14,7 +14,7 @@ const Team = () => {
                     <ShowAllButton/>
                 </div>
             </div>
-            <div className='flex flex-wrap px-16 '>
+            <div className='flex flex-wrap justify-center px-16 '>
                 <div>
                     <Members/>
                 </div>
