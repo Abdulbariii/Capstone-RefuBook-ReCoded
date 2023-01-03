@@ -4,7 +4,7 @@ export default function Story() {
   return (
     <div className='flex flex-col flex-nowrap justify-center align-center bg-white'>
         <div className=''>
-          <h1 className='mt-8 text-5xl md:mt-2 mb-8 text-blue-700 font-bold'>Our Story</h1>
+          <h1 className='mt-8 text-5xl md:mt-2 mb-8 text-[#025594] font-bold'>Our Story</h1>
         </div>
         <div className='mx-16 md:mx-72  mb-16'>
           <p className='text-xl'>
