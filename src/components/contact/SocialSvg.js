@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function SocialSvg() {
   return (
-    <div className="flex justify-around w-[110px] h-[30px]">
+    <div className="flex justify-around w-[110px] h-[30px] lg:m-0 m-auto">
       <svg
         className="cursor-pointer"
         width="31"
