@@ -4,7 +4,7 @@ import SocialSvg from './SocialSvg';
 import Notification from './Notification';
 import ContactSvg from './ContactSvg';
 
-export default function ContactForm({ bgColor }) {
+export default function ContactForm() {
   const [emailSent, setEmailSent] = useState(false);
   const [emailIsPending, setEmailIsPending] = useState(false);
 
@@ -39,7 +39,7 @@ export default function ContactForm({ bgColor }) {
   return (
 
 
-    <div className={`min-h-screen w-full flex lg:flex-row flex-col-reverse lg:justify-between lg:gap-20 ${bgColor}  items-center px-40  pt-24  `}>
+    <div className='min-h-screen w-full flex lg:flex-row flex-col-reverse lg:justify-between lg:gap-20 lg:bg-[#EAFBFF]  items-center px-40  pt-24 '>
 
       {emailIsPending ? <Notification state="pending" /> : null}
       {emailSent ? <Notification state="sent" /> : null}
