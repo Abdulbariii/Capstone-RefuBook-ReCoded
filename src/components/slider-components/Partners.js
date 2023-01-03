@@ -64,4 +64,3 @@ function Partners({ font, fontWeight, textSize, textColorScreen, textColorMobile
 }
 
 export default Partners
-
