@@ -14,8 +14,9 @@ export default function Home() {
       <About />
       <Features />
     </div>
-    <Testimoniol />
-    <Partners />
-    <LatestStories />
+
+    <Testimoniol bgColor="bg-[white]" textColor="text-black" />
+
+
   </div>;
 }
