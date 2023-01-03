@@ -31,14 +31,14 @@ function LatestStories() {
 
             <div className='font-sans font-normal  text-white lg:text-left text-center '>
                 <p className=' lg:text-[3.375rem] text-[1.015rem] lg:tracking-[-1] tracking-[-0.3] mb-4'>Latest Stories</p>
-                <p className='lg:text-lg text-sm tracking-tighter lg:w-[25rem] w-[16.25rem] lg:m-0 m-auto '>Home is behind, the world ahead and there are many paths to tread through shadows to the edge.</p>
+                <p className='lg:text-lg text-sm tracking-tighter lg:w-[25rem] w-[16.25rem] lg:m-0 m-auto pb-4 '>Home is behind, the world ahead and there are many paths to tread through shadows to the edge.</p>
             </div>
 
             {latestStories.slice(0, 2).map(({ id, language, story, img, author, authorInfo, authorAvator }) => (
 
-                <div key={id} className='flex lg:flex-row flex-col lg:justify-between  py-10 items-center'>
+                <div key={id} className='flex lg:flex-row flex-col lg:gap-20 lg:justify-between lg:py-10  py-6 lg:items-stretch items-center'>
                     <div className='lg:w-[30.52rem] lg:h-[18.958rem] w-[15.823rem] h-[8.938rem] bg-neutral-900  rounded-sm mb-4'>
-                        <img src={img} alt="" className='w-full h-full object-cover rounded-sm' />
+                        <img src={img} alt="" className='w-full h-full object-cover rounded-sm ' />
                     </div>
 
                     <div className='lg:w-[25.189rem] w-[15.823rem] text-left flex flex-col gap-5'>
