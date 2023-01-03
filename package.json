@@ -3,16 +3,23 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emailjs/browser": "^3.10.0",
     "@reduxjs/toolkit": "^1.9.1",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.0.1",
     "@testing-library/user-event": "^14.1.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
+    "adjust-sourcemap-loader": "^5.0.0",
+    "emailjs-com": "^3.2.0",
+    "firebase": "^9.15.0",
+    "framer-motion": "^8.1.5",
+    "motion": "^10.15.3",
+    "react-is": "^18.2.0",
+    "react-loader-spinner": "^5.3.4",
     "react-redux": "^8.0.1",
     "react-router": "^6.6.1",
     "react-router-dom": "^6.6.1",
     "react-scripts": "5.0.1",
+    "swiper": "^8.4.5",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -22,7 +29,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",
-    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc"
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc.json"
   },
   "eslintConfig": {
     "extends": [
@@ -47,12 +54,16 @@
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-import-resolver-webpack": "^0.13.2",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "postcss": "^8.4.17",
     "prettier": "2.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "source-map-loader": "^4.0.1",
     "tailwindcss": "^3.1.8"
   }
 }
