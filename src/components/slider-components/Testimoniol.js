@@ -78,4 +78,3 @@ function Testimoniol({ bgColor, textColor }) {
 }
 
 export default Testimoniol
-
