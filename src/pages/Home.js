@@ -16,7 +16,6 @@ export default function Home() {
     </div>
 
     <Testimoniol bgColor="bg-[white]" textColor="text-black" />
-    <Partners font="font-['Fira Sans']" fontWeight="font-medium" textSize="text-2xl" textColorScreen="lg:text-black" textColorMobile="text-black" />
 
   </div>;
 }
