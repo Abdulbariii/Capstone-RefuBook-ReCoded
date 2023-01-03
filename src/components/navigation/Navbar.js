@@ -3,7 +3,8 @@ import { NavLink } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-    <section className=" absolute top-0 left-0 right-0 font-sans m-auto flex justify-between items-center  p-9 lg:px-40 px-14 ">
+
+    <section className=" absolute top-0 left-0 right-0 font-sans  flex justify-between items-center  lg:py-10 lg:px-40 py-6 px-4 ">
       <div className="text-[#026FC2] flex items-center justify-center">
         <svg
           className="lg:w-[25px] w-[16px]"
@@ -33,19 +34,53 @@ export default function Navbar() {
         </p>
       </div>
 
-      <div className="text-[#9DAFBD] font-normal flex justify-end items-center flex-1  lg:gap-12  gap-4   text-xs lg:text-sm leading-[14.06px] lg:leading-4 tracking-[-0.5px]">
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/about">About</NavLink>
-        <NavLink to="/blog">Blog</NavLink>
-        <NavLink to="/contact">Contact</NavLink>
-        <NavLink to="/signup" className="hidden lg:block">
-          <button
-            type="button"
-            className="inline-block   px-7 py-1.5  bg-[#4699C2] text-white font-bold text-sm rounded-[50px] shadow-md hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
-          >
-            Sign up
-          </button>
+      <div className="text-[#9DAFBD] font-normal  flex justify-end items-center flex-1  lg:gap-12  gap-4   text-xs lg:text-lg leading-[14.06px] lg:leading-4 tracking-[-0.5px]">
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? ` underline text-[#4699C2] ` : ` `
+          }
+          to="/"
+        >
+          Home
         </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? ` underline text-[#4699C2] ` : ` `
+          }
+          to="/about"
+        >
+          About
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? ` underline text-[#4699C2] ` : ` `
+          }
+          to="/blog"
+        >
+          Blog
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive ? ' underline text-[#4699C2] ' : ' '
+          }
+          to="/contact"
+        >
+          Contact
+        </NavLink>
+        <div className='hidden lg:block '>
+          <NavLink
+            className={({ isActive }) =>
+              isActive ? ` underline text-[#4699C2] ` : ` `
+            }
+            to="/signup"
+          >
+            <button
+              type="button"
+              className="inline-block   px-7 py-1.5  bg-[#4699C2] text-white font-bold text-sm rounded-[50px] shadow-md hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
+            >
+              Sign up
+            </button>
+          </NavLink></div>
       </div>
     </section>
   );
