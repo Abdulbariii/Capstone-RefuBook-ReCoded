@@ -1,5 +1,10 @@
 import React from 'react';
+import SignUpNavbar from '../components/signup/SignupNavbar';
 
 export default function SignUp() {
-  return <div>SignUp</div>;
+  return (
+  <div>
+    <SignUpNavbar/>
+  </div>
+  );
 }
