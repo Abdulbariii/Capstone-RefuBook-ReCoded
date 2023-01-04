@@ -13,7 +13,7 @@ const Team = () => {
                 <div className='lg:hidden'>
                     <ShowAllButton/>
                 </div>
-                <div className='my-3 lg:flex lg:flex-row justify-center sm:hidden md:hidden'>
+                <div className='lg:my-3 lg:flex lg:flex-row lg:justify-center hidden'>
                     <div>
                         <CountryButton CountryName="View All"/>
                     </div>
