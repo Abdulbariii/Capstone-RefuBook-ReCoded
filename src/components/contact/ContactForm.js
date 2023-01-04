@@ -38,8 +38,7 @@ export default function ContactForm() {
 
   return (
 
-
-    <div className='min-h-screen w-full flex lg:flex-row flex-col-reverse lg:justify-between lg:gap-20 lg:bg-[#EAFBFF]  items-center px-40  pt-24 '>
+    <div className=' w-full flex lg:flex-row flex-col-reverse lg:justify-between lg:gap-20 lg:bg-[#EAFBFF]  items-center px-24  pt-24 '>
 
       {emailIsPending ? <Notification state="pending" /> : null}
       {emailSent ? <Notification state="sent" /> : null}

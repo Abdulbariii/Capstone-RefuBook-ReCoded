@@ -10,7 +10,7 @@
     "@testing-library/user-event": "^14.1.1",
     "adjust-sourcemap-loader": "^5.0.0",
     "emailjs-com": "^3.2.0",
-    "framer-motion": "^8.0.2",
+    "framer-motion": "^8.1.5",
     "motion": "^10.15.3",
     "react-is": "^18.2.0",
     "react-loader-spinner": "^5.3.4",
