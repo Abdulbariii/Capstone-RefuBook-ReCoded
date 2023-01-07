@@ -1,14 +1,20 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
 
-import { NavbarAvatar } from "./NavSvg"
+import React, { useState } from 'react';
+
+
+
+import { NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 
+import { NavbarAvatar } from "./NavSvg"
+
+
+
 export default function Navbar() {
   const [burgerStatus, setBurgerStatus] = useState(false);
-  const [user, loading] = useAuthState(auth);
-
+  const [user] = useAuthState(auth);
+  console.log(user)
   return (
     <section className='z-[100px] '>
 
@@ -33,25 +39,25 @@ export default function Navbar() {
           </svg>
         </div>
 
-
-
-        {/* <div className=" text-[#9DAFBD] font-normal  flex flex-col gap-20 items-center  text-xs lg:text-lg leading-[14.06px] lg:leading-4 tracking-[-0.5px]"> */}
         <div className='flex flex-col items-center gap-20 '>
           <div className='lg:hidden block mt-6'>
-            <NavbarAvatar />
-            <p className='font-sans text-base font-medium text-[#3F3B3B] mt-1'>Svyatoslav Taushev</p>
+            {!user && (<NavbarAvatar />)}
+            {user && (<div className='w-28 h-28 bg-[#eb5757] rounded-full'><img src={user.photoURL} alt="" className="rounded-full w-full h-full" referrerPolicy='no-referrer' /></div>)}
+            <p className='font-sans text-base font-medium text-[#3F3B3B] mt-1'>{user ? user.displayName : "User Name"}</p>
           </div>
           <div className='text-[#9DAFBD] font-normal lg:w-full w-[124px] flex lg:flex-row flex-col lg:justify-end items-center  justify-between lg:gap-12 gap-10 text-lg  leading-[14.06px] lg:leading-4 tracking-[-0.5px]'>
-            {!user && (
-              <NavLink
-                onClick={() => { setBurgerStatus(false); }}
-                className={({ isActive }) =>
-                  isActive ? `  font-bold text-[#4699C2] ` : ` `
-                }
-                to="/"
-              >
-                Home
-              </NavLink>)}
+
+            <NavLink
+              onClick={() => { setBurgerStatus(false); }}
+              className={({ isActive }) =>
+                isActive ? `  font-bold text-[#4699C2] ` : ` `
+              }
+              to="/"
+            >
+              Home
+            </NavLink>
+
+
             {user && (
               <NavLink
                 onClick={() => { setBurgerStatus(false); }}
@@ -60,9 +66,8 @@ export default function Navbar() {
                 }
                 to="/profile"
               >
-                Home
+                Profile
               </NavLink>)}
-
 
             <NavLink
               onClick={() => { setBurgerStatus(false); }}
@@ -91,20 +96,31 @@ export default function Navbar() {
             >
               Contact
             </NavLink>
-            <div className='hidden lg:block '>
+
+            {/* <div className='hidden lg:block '> */}
+            <div className=''>
               <NavLink
-                onClick={() => { setBurgerStatus(false); }}
                 className={({ isActive }) =>
                   isActive ? ` underline text-[#4699C2] ` : ` `
                 }
                 to="/signup"
               >
-                <button
-                  type="button"
-                  className="inline-block   px-7 py-1.5  bg-[#4699C2] text-white font-bold text-sm rounded-[50px] shadow-md hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
-                >
-                  Sign up
-                </button>
+                {!user && (
+                  <button
+                    onClick={() => { setBurgerStatus(false); }}
+                    type="button"
+                    className="inline-block   px-7 py-1.5  bg-[#4699C2] text-white font-bold text-sm rounded-[50px] shadow-md hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
+                  >
+                    Sign up
+                  </button>)}
+                {user && (
+                  <button
+                    onClick={() => { auth.signOut(); setBurgerStatus(false); }}
+                    type="button"
+                    className="inline-block   px-7 py-1.5  bg-[#4699C2] text-white font-bold text-sm rounded-[50px] shadow-md hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
+                  >
+                    Sign out
+                  </button>)}
               </NavLink></div>
           </div> </div>
       </div>

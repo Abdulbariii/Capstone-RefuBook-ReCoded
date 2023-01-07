@@ -1,24 +1,54 @@
-import React from 'react'
-import FacebookIcon from '@mui/icons-material/Facebook';
-import GoogleIcon from '@mui/icons-material/Google';
-import { NavLink } from 'react-router-dom';
-import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { useAuthState } from 'react-firebase-hooks';
+import React, { useEffect } from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+
+// import FacebookIcon from '@mui/icons-material/Facebook';
+// import GoogleIcon from '@mui/icons-material/Google';
+import { NavLink, useNavigate } from 'react-router-dom';
+
+
+import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, updateProfile } from "firebase/auth";
 import { auth } from '../../firebase';
 
+
 function LogInPage() {
+    const [user] = useAuthState(auth);
+    const navigate = useNavigate();
 
     // sign in with Google
     const googleProvider = new GoogleAuthProvider();
     const GoogleLogin = async () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
+            navigate('/');
             console.log(result.user);
         }
         catch (error) {
             console.log(error)
         }
     }
+    // sign in with facebook
+    const fbProvider = new FacebookAuthProvider();
+    const FacebookProvider = async () => {
+        try {
+            const result = await signInWithPopup(auth, fbProvider);
+            const credantial = await FacebookAuthProvider.credentialFromResult(
+                result
+            );
+            const token = credantial.accessToken;
+            const photoUrl = `${result.user.photoURL}?height=500&access_token=${token}`;
+            await updateProfile(auth.currentUser, { photoURL: photoUrl });
+            navigate('/');
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [user])
+
     return (
         <section className='flex flex-col'>
             <div className="absolute  lg:top-0 left-0 bottom-0 lg:right-auto right-0 lg:w-[50%] w-full lg:h-full h-[40%] bg-[#e5faff]  rounded-t-[50%]  lg:rounded-l-[24px]  lg:rounded-r-full  " />
@@ -27,12 +57,14 @@ function LogInPage() {
                 <p className='text-[#4699C2] font-sans font-bold lg:text-2xl text-lg text-center'>SIGN IN WITH</p>
                 <div className='flex lg:flex-row flex-col justify-between items-center lg:gap-10 '>
                     <button type="button" onClick={GoogleLogin} className="px-16 py-2   mt-5 bg-[#eb5757] text-white font-bold lg:text-lg text-base rounded-full shadow-md hover:bg-[#df3535] hover:shadow-lg focus:bg-[#df3535] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#df3535] active:shadow-lg transition duration-150 ease-in-out">
-                        <GoogleIcon fontSize="large" />
+                        {/* <GoogleIcon fontSize="large" /> */}
+                        Google
                     </button>
                     <p className='text-[#4699C2] font-sans font-bold text-lg text-center mt-4'>OR</p>
 
-                    <button type="button" className="px-16 py-2   mt-5 bg-[#2F80ED] text-white font-bold lg:text-lg text-base rounded-full shadow-md hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out">
-                        <FacebookIcon fontSize="large" />
+                    <button onClick={FacebookProvider} type="button" className="px-16 py-2   mt-5 bg-[#2F80ED] text-white font-bold lg:text-lg text-base rounded-full shadow-md hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out">
+                        {/* <FacebookIcon fontSize="large" /> */}
+                        facebook
                     </button>
                 </div>
 

@@ -115,9 +115,8 @@ export default function ProfilePosts() {
               setNext(6);
               setPrev(0);
             }}
-            className={` ${
-              prev === 0 ? 'bg-opacity-100' : 'bg-opacity-20'
-            } bg-[#4699C2] h-5 w-5 rounded-full`}
+            className={` ${prev === 0 ? 'bg-opacity-100' : 'bg-opacity-20'
+              } bg-[#4699C2] h-5 w-5 rounded-full`}
           >
             .
           </button>
@@ -127,9 +126,8 @@ export default function ProfilePosts() {
               setNext(posts.length <= 12 ? posts.length : 6);
               setPrev(7);
             }}
-            className={` ${
-              next === 6 ? 'bg-opacity-20' : 'bg-opacity-100'
-            } bg-[#4699C2] h-5 w-5 rounded-full`}
+            className={` ${next === 6 ? 'bg-opacity-20' : 'bg-opacity-100'
+              } bg-[#4699C2] h-5 w-5 rounded-full`}
           >
             .
           </button>
