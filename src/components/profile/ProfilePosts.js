@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 export default function ProfilePosts() {
   const posts = [
@@ -91,7 +92,12 @@ export default function ProfilePosts() {
   const [next, setNext] = useState(6);
   const [prev, setPrev] = useState(0);
   return (
-    <div className="flex justify-center items-center px-56 gap-10 flex-wrap">
+    <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.45, ease: 'easeOut' }}
+      className="flex justify-center items-center px-56 gap-10 flex-wrap"
+    >
       {posts.slice(prev, next).map((post) => (
         <div className="w-64 h-40 p-5 cursor-pointer rounded-2xl shadow-xl bg-white flex flex-col justify-around items-start">
           <h1 className="text-2xl font-medium">{post.title}</h1>
@@ -135,6 +141,6 @@ export default function ProfilePosts() {
           </button>
         </div>
       ) : null}
-    </div>
+    </motion.div>
   );
 }

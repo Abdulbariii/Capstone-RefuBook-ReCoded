@@ -8,13 +8,14 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Blog from './pages/Blog';
-
+import Write from './pages/Write';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -23,6 +24,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/write" element={<Write />} />
       </Routes>
     </div>
   );

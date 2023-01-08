@@ -3,8 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 export default function Navbar() {
   return (
-
-    <section className=" absolute top-0 left-0 right-0 font-sans  flex justify-between items-center  lg:py-8 lg:px-24 py-6 px-4 ">
+    <section className=" absolute z-50 top-0 left-0 right-0 font-sans  bg-transparent  flex justify-between items-center  lg:py-8 lg:px-24 py-6 px-4 ">
       <div className="text-[#026FC2] flex items-center justify-center">
         <svg
           className="lg:w-[25px] w-[16px]"
@@ -67,7 +66,7 @@ export default function Navbar() {
         >
           Contact
         </NavLink>
-        <div className='hidden lg:block '>
+        <div className="hidden lg:block ">
           <NavLink
             className={({ isActive }) =>
               isActive ? ` underline text-[#4699C2] ` : ` `
@@ -80,7 +79,8 @@ export default function Navbar() {
             >
               Sign up
             </button>
-          </NavLink></div>
+          </NavLink>
+        </div>
       </div>
     </section>
   );
