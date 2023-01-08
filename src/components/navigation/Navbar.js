@@ -7,14 +7,13 @@ import { NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
 
-import { NavbarAvatar } from "./NavSvg"
+import { NavbarAvatar, Logo } from "./NavSvg"
 
 
 
 export default function Navbar() {
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [user] = useAuthState(auth);
-  console.log(user)
   return (
     <section className='z-[100px] '>
 
@@ -28,6 +27,7 @@ export default function Navbar() {
       <div className={`${burgerStatus ? 'lg:transform-none translate-x-0' : 'lg:transform-none -translate-x-full'} lg:w-auto w-[60%] lg:absolute lg:bottom-auto lg:right-0  fixed  z-[100] top-0 left-0 bottom-0 lg:flex lg:justify-between lg:items-center lg:rounded-none rounded-3xl lg:bg-transparent bg-white  font-sans lg:py-8 lg:px-24  p-6`}>
 
         <div className="text-[#026FC2] lg:flex items-center justify-center hidden">
+          <Logo />
           <p className="text-[#4699C2] text-base leading-[18.75px] lg:text-xl lg:leading-[23.44px] font-bold mr-3 ml-1.5 ">
             Refubook
           </p>
