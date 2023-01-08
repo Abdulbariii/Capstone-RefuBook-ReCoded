@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router';
-import Navbar from './components/navigation/Navbar';
+
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -10,6 +10,7 @@ import Profile from './pages/Profile';
 import Blog from './pages/Blog';
 import Write from './pages/Write';
 import './App.css';
+import Navbar from './components/navigation/Navbar';
 
 function App() {
   return (

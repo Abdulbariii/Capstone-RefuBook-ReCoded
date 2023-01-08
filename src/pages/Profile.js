@@ -10,6 +10,8 @@ import Form from '../components/profile/Form';
 export default function Profile() {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
+
+  console.log(user);
   if (!user) navigate('/');
   if (user) {
     const [editForm, setEditForm] = useState();
@@ -29,7 +31,12 @@ export default function Profile() {
             />
           </svg>
         </div>
-        <UserImage editForm={editForm} setEditForm={setEditForm} />
+        <UserImage
+          userImg={user && user.photoURL}
+          displayName={user && user.displayName}
+          editForm={editForm}
+          setEditForm={setEditForm}
+        />
         {editForm ? <Form setEditForm={setEditForm} /> : <ProfilePosts />}
       </div>
     );

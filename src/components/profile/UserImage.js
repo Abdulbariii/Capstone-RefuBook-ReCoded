@@ -2,14 +2,19 @@ import React from 'react';
 import EditPen from '../../assets/EditPen';
 import Camera from '../../assets/Camera';
 
-export default function UserImage({ editForm, setEditForm }) {
+export default function UserImage({
+  editForm,
+  setEditForm,
+  displayName,
+  userImg,
+}) {
   return (
-    <div className="flex justify-center items-center flex-col ">
+    <div className="flex mb-10 lg:mb-0 justify-center items-center flex-col ">
       <div className="relative ">
         <img
           className="w-[160px] h-[160px] rounded-full relative"
           alt="userProfile"
-          src="https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
+          src={userImg}
         />
         <button
           type="button"
@@ -22,7 +27,7 @@ export default function UserImage({ editForm, setEditForm }) {
         </button>
       </div>
 
-      <h1 className="text-xl mt-2 font-medium">Old trafford</h1>
+      <h1 className="text-xl mt-2 font-medium">{displayName}</h1>
     </div>
   );
 }
