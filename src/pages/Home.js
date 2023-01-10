@@ -7,14 +7,22 @@ import Partners from '../components/slider-components/Partners';
 import LatestStories from '../components/home-components/LatestStories';
 
 export default function Home() {
-  return <div>
-    <Title />
-    <div className='bg-[#e5faff] '>
-      <About />
-      <Features />
+  return (
+    <div className="min-h-screen">
+      <Title />
+      <div className="bg-[#e5faff] ">
+        <About />
+        <Features />
+      </div>
+      <Testimoniol bgColor="bg-[white]" textColor="text-black" />
+      <Partners
+        font="font-['Fira Sans']"
+        fontWeight="font-medium"
+        textSize="text-2xl"
+        textColorScreen="lg:text-black"
+        textColorMobile="text-black"
+      />
+      <LatestStories />
     </div>
-    <Testimoniol bgColor="bg-[white]" textColor="text-black" />
-    <Partners font="font-['Fira Sans']" fontWeight="font-medium" textSize="text-2xl" textColorScreen="lg:text-black" textColorMobile="text-black" />
-    <LatestStories />
-  </div>;
+  );
 }

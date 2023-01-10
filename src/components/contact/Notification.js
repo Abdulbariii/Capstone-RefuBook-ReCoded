@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { TailSpin } from 'react-loader-spinner';
 
-export default function Notification({ state }) {
+export default function Notification({ state, name }) {
   return (
     <motion.div
       initial={{ opacity: 0, translateY: -70 }}
@@ -24,7 +24,7 @@ export default function Notification({ state }) {
           visible={state === 'pending' ? true : null}
         />
       )}
-      <h1 className="text-2xl text-black">{`Email is ${state}`}</h1>
+      <h1 className="text-2xl text-black">{`${name} is ${state}`}</h1>
     </motion.div>
   );
 }

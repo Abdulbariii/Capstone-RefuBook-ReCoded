@@ -37,22 +37,23 @@ export default function ContactForm() {
   };
 
   return (
-
-    <div className=' w-full flex lg:flex-row flex-col-reverse lg:justify-between lg:gap-20 lg:bg-[#EAFBFF]  items-center px-24  pt-24 '>
-
-      {emailIsPending ? <Notification state="pending" /> : null}
-      {emailSent ? <Notification state="sent" /> : null}
+    <div className=" w-full flex lg:flex-row flex-col-reverse lg:justify-between lg:gap-20 lg:bg-[#EAFBFF]  items-center px-24  pt-24 ">
+      {emailIsPending ? <Notification name="email" state="pending" /> : null}
+      {emailSent ? <Notification name="email" state="sent" /> : null}
 
       <div className=" py-10 flex gap-6 flex-col lg:items-start lg:justify-start items-center">
         <h1 className="text-[#4699C2] font-bold lg:text-[64px] text-3xl mb-2 tracking-[-0.1px]">
           Get in Touch
         </h1>
         <p className="text-[16px] text-[#8B8F9C] w-[362px] lg:text-start text-center font-normal">
-          But Brooke Chaffin and Catherine Connors are looking to change that with
-          the introduction.
+          But Brooke Chaffin and Catherine Connors are looking to change that
+          with the introduction.
         </p>
 
-        <form onSubmit={sendEmail} className="flex flex-col gap-4 items-start  text-[#8B8F9C]">
+        <form
+          onSubmit={sendEmail}
+          className="flex flex-col gap-4 items-start  text-[#8B8F9C]"
+        >
           <p className="font-light text-sm my-[-10px] ">Email</p>
           <input
             placeholder="@email"
@@ -77,9 +78,6 @@ export default function ContactForm() {
       </div>
 
       <ContactSvg />
-
-
     </div>
-
   );
 }
