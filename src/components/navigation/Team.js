@@ -30,27 +30,8 @@ const Team = () => {
 
                 </div>
             </div>
-            <div className='flex flex-wrap justify-center px-16 lg:mb-10'>
-                <div>
-                    <Members/>
-                </div>
-                <div>
-                    <Members/>
-                </div>
-                <div>
-                    <Members/>
-                </div>
-                <div>
-                    <Members/>
-                </div>
-                <div>
-                    <Members/>
-                </div>
-                <div>
-                    <Members/>
-                </div>
-                
-                
+            <div>
+                <Members/>
             </div>
             <div className='mb-3 lg:hidden'>
                 <div>
