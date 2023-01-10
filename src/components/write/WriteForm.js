@@ -1,22 +1,37 @@
 import { useState } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { motion } from 'framer-motion';
-import { storage } from '../../firebase';
-import { collection, addDoc } from 'firebase/firestore';
+
+import { storage, db, auth } from '../../firebase';
 
 function WriteForm({ setBlogPending, setBlogPosted }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [blog, setBlog] = useState('');
   const [selectedFile, setSelectedFile] = useState();
-  const [imageUrl, setImageUrl] = useState();
 
   // const imageList = ref(storage, `${title}/`);
-
-  const addData = async (img, blogTitle, desc, blog) => {
-    const docRef = await addDoc(collection(db, 'cities'), {
-      name: 'Tokyo',
-      country: 'Japan',
+  const [user] = useAuthState(auth);
+  console.log(user);
+  const addData = async (
+    img,
+    blogTitle,
+    desc,
+    blogPost,
+    username,
+    profileImg,
+    userid
+  ) => {
+    const docRef = await addDoc(collection(db, 'blogs'), {
+      Image: img,
+      Title: blogTitle,
+      Description: desc,
+      Blog: blogPost,
+      Username: username,
+      userImg: profileImg,
+      uid: userid,
     });
     console.log('Document written with ID: ', docRef.id);
   };
@@ -28,11 +43,18 @@ function WriteForm({ setBlogPending, setBlogPosted }) {
 
     uploadBytes(imageRef, selectedFile).then((snapshot) => {
       getDownloadURL(snapshot.ref).then((url) => {
-        setImageUrl(url && url);
         console.log(url);
         setBlogPending(false);
         // add them to fire base
-
+        addData(
+          url,
+          title,
+          description,
+          blog,
+          user && user.displayName,
+          user && user.photoURL,
+          user && user.uid
+        );
         setBlogPosted(true);
         setTimeout(() => {
           setBlogPosted(false);
