@@ -10,8 +10,8 @@ import Form from '../components/profile/Form';
 export default function Profile() {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
-
   console.log(user);
+
   if (!user) navigate('/');
   if (user) {
     const [editForm, setEditForm] = useState();

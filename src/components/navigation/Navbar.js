@@ -110,6 +110,20 @@ export default function Navbar() {
               </NavLink>
             )}
 
+            {user && (
+              <NavLink
+                onClick={() => {
+                  setBurgerStatus(false);
+                }}
+                className={({ isActive }) =>
+                  isActive ? `  font-bold text-[#4699C2] ` : ` `
+                }
+                to="/write"
+              >
+                Write
+              </NavLink>
+            )}
+
             <NavLink
               onClick={() => {
                 setBurgerStatus(false);
