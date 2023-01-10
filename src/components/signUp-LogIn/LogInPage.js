@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, updateProfile, getAdditionalUserInfo } from "firebase/auth";
@@ -17,8 +17,21 @@ function LogInPage() {
         try {
             const result = await signInWithPopup(auth, googleProvider);
             const isNewuser = getAdditionalUserInfo(result).isNewUser;
-            navigate('/');
-            console.log(isNewuser);
+            if (isNewuser) {
+                result.user.delete().then(() => {
+                    auth.signOut().then(() => {
+                        console.log("Signed Out!")
+                        alert("Please Sign Up first")
+                    })
+                });
+                navigate('/signup');
+
+            }
+            else {
+                navigate('/');
+            }
+            console.log("information")
+            console.log(result.user)
         }
         catch (error) {
             console.log(error)
@@ -43,11 +56,11 @@ function LogInPage() {
         }
     };
 
-    useEffect(() => {
-        if (user) {
-            navigate('/')
-        }
-    }, [user])
+    // useEffect(() => {
+    //     if (user) {
+    //         navigate('/')
+    //     }
+    // }, [user])
 
     return (
         <section className='flex flex-col'>

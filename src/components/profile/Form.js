@@ -1,7 +1,27 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+
 import { motion } from 'framer-motion';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { doc, onSnapshot } from "firebase/firestore";
+import { auth, db } from '../../firebase';
+
 
 export default function Form({ setEditForm }) {
+  const [user, setUser] = useState([]);
+  const [currentUser] = useAuthState(auth);
+  useEffect(() => {
+    const getUser = async () => {
+      const docRef = doc(db, 'users', currentUser.uid)
+      await onSnapshot(docRef, (doc) => {
+        setUser({
+          ...doc.data(), id: doc.id
+        })
+      })
+    }
+    getUser()
+  }, [])
+  console.log(user)
+
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [biograhpy, setBiography] = useState('');
@@ -20,7 +40,7 @@ export default function Form({ setEditForm }) {
           <div className="border border-gray-300 rounded-md">
             <input
               type="text"
-              required
+              placeholder={user.firstName}
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full py-2 opacity-50 focus:opacity-100"
@@ -33,7 +53,6 @@ export default function Form({ setEditForm }) {
           <div className="border border-gray-300 rounded-md">
             <input
               type="text"
-              required
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
               className="opacity-50 focus:opacity-100 w-full py-2"
@@ -45,7 +64,6 @@ export default function Form({ setEditForm }) {
       <h2 className="text-left text-[#4699C2] font-bold py-2">Biograhpy: </h2>
       <div className="border border-gray-300 rounded-md">
         <textarea
-          required
           value={biograhpy}
           onChange={(e) => setBiography(e.target.value)}
           className="opacity-50 focus:opacity-100 w-full py-4"
@@ -57,7 +75,6 @@ export default function Form({ setEditForm }) {
       <h2 className="text-left text-[#4699C2] font-bold py-2">Location: </h2>
       <div className="border border-gray-300 rounded-md">
         <input
-          required
           value={location}
           onChange={(e) => setLocation(e.target.value)}
           className="opacity-50 focus:opacity-100 w-full py-2"
