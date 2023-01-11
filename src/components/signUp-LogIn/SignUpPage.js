@@ -27,10 +27,11 @@ function SignUpPage() {
             else {
                 navigate('/');
                 await setDoc(doc(db, "users", result.user.uid), {
-                    firstName: result.user.displayName.split(' ').slice(0, -1).join(' '),
+                    name: result.user.displayName.split(' ').slice(0, -1).join(' '),
                     surname: result.user.displayName.split(' ').slice(-1).join(' '),
                     biography: "",
-                    location: ""
+                    location: "",
+                    photo: result.user.photoURL
                 });
             }
             console.log(result.user.uid)

@@ -1,20 +1,36 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../firebase';
+import { doc, onSnapshot } from "firebase/firestore";
+import { auth, db } from '../firebase';
 import UserImage from '../components/profile/UserImage';
 import ProfilePosts from '../components/profile/ProfilePosts';
 
 import Form from '../components/profile/Form';
 
 export default function Profile() {
-  const [user] = useAuthState(auth);
+  const [currentUser] = useAuthState(auth);
   const navigate = useNavigate();
+  const [editForm, setEditForm] = useState();
+  const [user, setUser] = useState([]);
+  const [photo, setPhoto] = useState(null);
 
+  useEffect(() => {
+    const getUser = async () => {
+      const docRef = doc(db, 'users', currentUser.uid)
+      await onSnapshot(docRef, (doc) => {
+        setUser({
+          ...doc.data(), id: doc.id
+
+        })
+      })
+    }
+    getUser()
+  }, [])
+  console.log("bbbbbbbbbbbbbbb")
   console.log(user);
   if (!user) navigate('/');
   if (user) {
-    const [editForm, setEditForm] = useState();
     return (
       <div className=" min-h-screen flex justify-around my-20 flex-col items-center relative">
         <div className="fixed left-0  z-[-1]">
@@ -32,12 +48,13 @@ export default function Profile() {
           </svg>
         </div>
         <UserImage
-          userImg={user && user.photoURL}
-          displayName={user && user.displayName}
+          choosePhoto={setPhoto}
+          userImg={user && user.photo}
+          displayName={user && `${user.name} ${user.surname}`}
           editForm={editForm}
           setEditForm={setEditForm}
         />
-        {editForm ? <Form setEditForm={setEditForm} /> : <ProfilePosts />}
+        {editForm ? <Form setEditForm={setEditForm} photo={photo} /> : <ProfilePosts />}
       </div>
     );
   }
