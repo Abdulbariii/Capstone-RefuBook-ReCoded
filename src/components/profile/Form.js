@@ -1,44 +1,17 @@
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { doc, onSnapshot, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { auth, db } from '../../firebase';
 
 
-export default function Form({ setEditForm, photo }) {
-  const [user, setUser] = useState([]);
+export default function Form({ setEditForm, photo, user }) {
   const [currentUser] = useAuthState(auth);
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [biography, setBiography] = useState('');
-  const [location, setLocation] = useState('');
-  const [initialPhoto, setInitialPhoto] = useState('');
-
-  // fetching user information from firestore
-  useEffect(() => {
-    const getUser = async () => {
-      const docRef = await doc(db, 'users', currentUser.uid)
-      try {
-        await onSnapshot(docRef, (doc) => {
-          setUser({
-            ...doc.data(), id: doc.id
-
-          })
-          setName(doc.data().name)
-          setSurname(doc.data().surname)
-          setBiography(doc.data().biography)
-          setLocation(doc.data().location)
-          setInitialPhoto(doc.data().photo)
-        })
-
-      } catch (e) {
-        console.log(e)
-      }
-
-    }
-    getUser()
-  }, [])
+  const [name, setName] = useState(user.name);
+  const [surname, setSurname] = useState(user.surname);
+  const [biography, setBiography] = useState(user.biography);
+  const [location, setLocation] = useState(user.location);
 
   // updating user's profile
   const updateProfile = async (e) => {
@@ -49,7 +22,7 @@ export default function Form({ setEditForm, photo }) {
       surname,
       biography,
       location,
-      photo: (photo ? photo : initialPhoto)
+      photo: (photo ? photo : user.photo)
     })
   }
 

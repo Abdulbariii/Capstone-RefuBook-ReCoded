@@ -10,7 +10,7 @@ import { NavbarAvatar, Logo } from "./NavSvg"
 
 
 
-export default function Navbar() {
+export default function Navbar({ userInfo }) {
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [user] = useAuthState(auth);
   return (
@@ -41,8 +41,8 @@ export default function Navbar() {
         <div className='flex flex-col items-center gap-20 '>
           <div className='lg:hidden block mt-6'>
             {!user && (<NavbarAvatar />)}
-            {user && (<div className='w-28 h-28 bg-[#eb5757] rounded-full'><img src={user.photoURL} alt="" className="rounded-full w-full h-full" referrerPolicy='no-referrer' /></div>)}
-            <p className='font-sans text-base font-medium text-[#3F3B3B] mt-1'>{user ? user.displayName : "User Name"}</p>
+            {user && (<div className='w-28 h-28 bg-[#eb5757] rounded-full'><img src={userInfo.photo} alt="" className="rounded-full w-full h-full" referrerPolicy='no-referrer' /></div>)}
+            <p className='font-sans text-base font-medium text-[#3F3B3B] mt-1'>{user ? `${userInfo.name} ${userInfo.surname}` : "User Name"}</p>
           </div>
           <div className='text-[#9DAFBD] font-normal lg:w-full w-[124px] flex lg:flex-row flex-col lg:justify-end items-center  justify-between lg:gap-12 gap-10 text-lg  leading-[14.06px] lg:leading-4 tracking-[-0.5px]'>
 

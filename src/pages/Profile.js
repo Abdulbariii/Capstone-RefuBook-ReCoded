@@ -1,38 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
-import { doc, onSnapshot } from "firebase/firestore";
-import { auth, db } from '../firebase';
+import { auth } from '../firebase';
 import UserImage from '../components/profile/UserImage';
 import ProfilePosts from '../components/profile/ProfilePosts';
 
 import Form from '../components/profile/Form';
 
-export default function Profile() {
+export default function Profile({ user }) {
   const [currentUser] = useAuthState(auth);
   const navigate = useNavigate();
   const [editForm, setEditForm] = useState();
-  const [user, setUser] = useState([]);
   const [photo, setPhoto] = useState(null);
-
-  useEffect(() => {
-    const getUser = async () => {
-      const docRef = await doc(db, 'users', currentUser.uid)
-      try {
-        await onSnapshot(docRef, (doc) => {
-          setUser({
-            ...doc.data(), id: doc.id
-
-          })
-        })
-
-      } catch (e) {
-        console.log(e)
-      }
-
-    }
-    getUser()
-  }, [])
 
   if (!currentUser) navigate('/');
   if (currentUser) {
@@ -59,7 +38,7 @@ export default function Profile() {
           editForm={editForm}
           setEditForm={setEditForm}
         />
-        {editForm ? <Form setEditForm={setEditForm} photo={photo} /> : <ProfilePosts />}
+        {editForm ? <Form setEditForm={setEditForm} photo={photo} user={user} /> : <ProfilePosts />}
       </div>
     );
   }
