@@ -1,7 +1,8 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, updateProfile, getAdditionalUserInfo } from "firebase/auth";
-import { auth } from '../../firebase';
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from '../../firebase';
 import Google from "./Google.png"
 import Facebook from "./Facebook.png"
 
@@ -14,8 +15,17 @@ function SignUpPage() {
         try {
             const result = await signInWithPopup(auth, googleProvider);
             const isNewuser = getAdditionalUserInfo(result).isNewUser;
+            if (isNewuser) {
+
+                await setDoc(doc(db, "users", result.user.uid), {
+                    name: result.user.displayName.split(' ').slice(0, -1).join(' '),
+                    surname: result.user.displayName.split(' ').slice(-1).join(' '),
+                    biography: "",
+                    location: "",
+                    photo: result.user.photoURL
+                });
+            }
             navigate('/');
-            console.log(isNewuser);
         } catch (error) {
             console.log(error);
         }
@@ -29,16 +39,24 @@ function SignUpPage() {
             const token = credantial.accessToken;
             const photoUrl = `${result.user.photoURL}?height=500&access_token=${token}`;
             await updateProfile(auth.currentUser, { photoURL: photoUrl });
-            const details = getAdditionalUserInfo(result)
+            const isNewuser = getAdditionalUserInfo(result).isNewUser;
+            if (isNewuser) {
+
+                await setDoc(doc(db, "users", result.user.uid), {
+                    name: result.user.displayName.split(' ').slice(0, -1).join(' '),
+                    surname: result.user.displayName.split(' ').slice(-1).join(' '),
+                    biography: "",
+                    location: "",
+                    photo: result.user.photoURL
+                });
+            }
             navigate('/');
-            console.log(details.isNewUser);
+            console.log(result.user.uid)
 
         } catch (error) {
             console.log(error);
         }
     };
-
-
     return (
         <section className='flex flex-col'>
             <div className="absolute  lg:top-0 left-0 bottom-0 lg:right-auto right-0 lg:w-[50%] w-full lg:h-full h-[40%] bg-[#e5faff]  rounded-t-[50%]  lg:rounded-l-[24px]  lg:rounded-r-full  " />

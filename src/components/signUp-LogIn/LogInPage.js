@@ -1,14 +1,13 @@
-import React, { useEffect } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { GoogleAuthProvider, signInWithPopup, FacebookAuthProvider, updateProfile, getAdditionalUserInfo } from "firebase/auth";
-import { auth } from '../../firebase';
-import Google from "./Google.png";
+import { doc, setDoc } from "firebase/firestore";
+import { auth, db } from '../../firebase';
+import Google from "./Google.png"
 import Facebook from "./Facebook.png"
 
 
 function LogInPage() {
-    const [user] = useAuthState(auth);
     const navigate = useNavigate();
 
     // sign in with Google
@@ -17,37 +16,47 @@ function LogInPage() {
         try {
             const result = await signInWithPopup(auth, googleProvider);
             const isNewuser = getAdditionalUserInfo(result).isNewUser;
+            if (isNewuser) {
+
+                await setDoc(doc(db, "users", result.user.uid), {
+                    name: result.user.displayName.split(' ').slice(0, -1).join(' '),
+                    surname: result.user.displayName.split(' ').slice(-1).join(' '),
+                    biography: "",
+                    location: "",
+                    photo: result.user.photoURL
+                });
+            }
             navigate('/');
-            console.log(isNewuser);
+        } catch (error) {
+            console.log(error);
         }
-        catch (error) {
-            console.log(error)
-        }
-    }
+    };
     // sign in with facebook
     const fbProvider = new FacebookAuthProvider();
     const FacebookLogIn = async () => {
         try {
             const result = await signInWithPopup(auth, fbProvider);
-            const credantial = await FacebookAuthProvider.credentialFromResult(
-                result
-            );
+            const credantial = await FacebookAuthProvider.credentialFromResult(result);
             const token = credantial.accessToken;
             const photoUrl = `${result.user.photoURL}?height=500&access_token=${token}`;
             await updateProfile(auth.currentUser, { photoURL: photoUrl });
-            const details = getAdditionalUserInfo(result)
+            const isNewuser = getAdditionalUserInfo(result).isNewUser;
+            if (isNewuser) {
+
+                await setDoc(doc(db, "users", result.user.uid), {
+                    name: result.user.displayName.split(' ').slice(0, -1).join(' '),
+                    surname: result.user.displayName.split(' ').slice(-1).join(' '),
+                    biography: "",
+                    location: "",
+                    photo: result.user.photoURL
+                });
+            }
             navigate('/');
-            console.log(details.isNewUser);
+            console.log(result.user.uid)
         } catch (error) {
             console.log(error);
         }
     };
-
-    useEffect(() => {
-        if (user) {
-            navigate('/')
-        }
-    }, [user])
 
     return (
         <section className='flex flex-col'>

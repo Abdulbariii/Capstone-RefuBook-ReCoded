@@ -7,14 +7,22 @@ import ProfilePosts from '../components/profile/ProfilePosts';
 
 import Form from '../components/profile/Form';
 
-export default function Profile() {
-  const [user] = useAuthState(auth);
+export default function Profile({ user }) {
+  const [currentUser] = useAuthState(auth);
   const navigate = useNavigate();
+
+  const [editForm, setEditForm] = useState();
+  const [photo, setPhoto] = useState(null);
+
+  if (!currentUser) navigate('/');
+  if (currentUser) {
+
   console.log(user);
 
   if (!user) navigate('/');
   if (user) {
     const [editForm, setEditForm] = useState();
+
     return (
       <div className=" min-h-screen flex justify-around my-20 flex-col items-center relative">
         <div className="fixed left-0  z-[-1]">
@@ -32,12 +40,13 @@ export default function Profile() {
           </svg>
         </div>
         <UserImage
-          userImg={user && user.photoURL}
-          displayName={user && user.displayName}
+          choosePhoto={setPhoto}
+          userImg={currentUser && user.photo}
+          displayName={currentUser && `${user.name} ${user.surname}`}
           editForm={editForm}
           setEditForm={setEditForm}
         />
-        {editForm ? <Form setEditForm={setEditForm} /> : <ProfilePosts />}
+        {editForm ? <Form setEditForm={setEditForm} photo={photo} user={user} /> : <ProfilePosts />}
       </div>
     );
   }
