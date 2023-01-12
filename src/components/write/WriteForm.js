@@ -1,16 +1,68 @@
 import { useState } from 'react';
+import { collection, addDoc } from 'firebase/firestore';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { motion } from 'framer-motion';
 
-function WriteForm() {
+import { storage, db, auth } from '../../firebase';
+
+function WriteForm({ setBlogPending, setBlogPosted }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [blog, setBlog] = useState('');
   const [selectedFile, setSelectedFile] = useState();
 
+  // const imageList = ref(storage, `${title}/`);
+  const [user] = useAuthState(auth);
+  console.log(user);
+  const addData = async (
+    img,
+    blogTitle,
+    desc,
+    blogPost,
+    username,
+    profileImg,
+    userid
+  ) => {
+    const docRef = await addDoc(collection(db, 'blogs'), {
+      Image: img,
+      Title: blogTitle,
+      Description: desc,
+      Blog: blogPost,
+      Username: username,
+      userImg: profileImg,
+      uid: userid,
+    });
+    console.log('Document written with ID: ', docRef.id);
+  };
+
   const blogSumbit = (e) => {
     e.preventDefault();
-    console.log(title, description, blog, selectedFile);
+    setBlogPending(true);
+    const imageRef = ref(storage, `${title}/${selectedFile.name}`);
+
+    uploadBytes(imageRef, selectedFile).then((snapshot) => {
+      getDownloadURL(snapshot.ref).then((url) => {
+        console.log(url);
+        setBlogPending(false);
+        // add them to fire base
+        addData(
+          url,
+          title,
+          description,
+          blog,
+          user && user.displayName,
+          user && user.photoURL,
+          user && user.uid
+        );
+        setBlogPosted(true);
+        setTimeout(() => {
+          setBlogPosted(false);
+        }, 2000);
+      });
+    });
   };
+
   return (
     <motion.form
       onSubmit={blogSumbit}
@@ -51,7 +103,7 @@ function WriteForm() {
         </div>
       </div>
 
-      <h2 className="text-left text-[#4699C2] font-bold py-2">Biograhpy: </h2>
+      <h2 className="text-left text-[#4699C2] font-bold py-2">Blog: </h2>
       <div className="border border-gray-300 rounded-md">
         <textarea
           required
@@ -65,13 +117,12 @@ function WriteForm() {
 
       <div className="lg:flex lg:flex-col lg:w-1/2">
         <h2 className="text-left text-[#4699C2] font-bold py-2">Image </h2>
-        <div className="border border-gray-300 rounded-md">
-          <input
-            type="file"
-            onChange={(e) => setSelectedFile(e.target.files)}
-            className="opacity-50 focus:opacity-100 w-full py-2"
-          />
-        </div>
+
+        <input
+          type="file"
+          onChange={(e) => setSelectedFile(e.target.files[0])}
+          className="opacity-50  bg-[#4699C2]"
+        />
       </div>
 
       <div className="flex flex-row justify-center py-4">

@@ -11,6 +11,7 @@ import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Blog from './pages/Blog';
+import Footer from './components/Footer';
 import Write from './pages/Write';
 import './App.css';
 import Navbar from './components/navigation/Navbar';
@@ -50,6 +51,7 @@ function App() {
         <Route path="/profile" element={<Profile user={user && user} />} />
         <Route path="/write" element={<Write />} />
       </Routes>
+      <Footer />
     </div>
   );
 }
