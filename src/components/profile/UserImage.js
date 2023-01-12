@@ -58,14 +58,12 @@ export default function UserImage({
 
   }, [photo])
 
-
-  console.log(`test ${imageUrl}`)
   return (
     <div className="flex mb-10 lg:mb-0 justify-center items-center flex-col ">
       <div className="relative ">
         <img
           className="w-[160px] h-[160px] rounded-full relative"
-          alt="avatar"
+          alt=""
           src={photo ? imageUrl : userImg}
           onLoad={async () => { await choosePhoto(imageUrl) }}
         />

@@ -17,20 +17,25 @@ export default function Profile() {
 
   useEffect(() => {
     const getUser = async () => {
-      const docRef = doc(db, 'users', currentUser.uid)
-      await onSnapshot(docRef, (doc) => {
-        setUser({
-          ...doc.data(), id: doc.id
+      const docRef = await doc(db, 'users', currentUser.uid)
+      try {
+        await onSnapshot(docRef, (doc) => {
+          setUser({
+            ...doc.data(), id: doc.id
 
+          })
         })
-      })
+
+      } catch (e) {
+        console.log(e)
+      }
+
     }
     getUser()
   }, [])
-  console.log("bbbbbbbbbbbbbbb")
-  console.log(user);
-  if (!user) navigate('/');
-  if (user) {
+
+  if (!currentUser) navigate('/');
+  if (currentUser) {
     return (
       <div className=" min-h-screen flex justify-around my-20 flex-col items-center relative">
         <div className="fixed left-0  z-[-1]">
@@ -49,8 +54,8 @@ export default function Profile() {
         </div>
         <UserImage
           choosePhoto={setPhoto}
-          userImg={user && user.photo}
-          displayName={user && `${user.name} ${user.surname}`}
+          userImg={currentUser && user.photo}
+          displayName={currentUser && `${user.name} ${user.surname}`}
           editForm={editForm}
           setEditForm={setEditForm}
         />
