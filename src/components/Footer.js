@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function Footer() {
   return (
-    <div className="container px-20 flex justify-between w-full gap-5 items-center py-10 ">
+    <div className="container px-20 flex flex-wrap justify-between w-full gap-5 items-center py-10 ">
       <div className="flex gap-10">
         <a href="#home">
           <img src="" alt="RfuBook" />

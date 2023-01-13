@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../../firebase';
@@ -32,12 +32,12 @@ export default function Navbar() {
         </svg>
       </div>
 
-      <div
+      <motion.div
         className={`${
           burgerStatus
             ? 'lg:transform-none translate-x-0'
-            : 'lg:transform-none -translate-x-full'
-        } lg:w-auto w-[60%] lg:absolute lg:bottom-auto lg:right-0  fixed  z-[100] top-0 left-0 bottom-0 lg:flex lg:justify-between lg:items-center lg:rounded-none rounded-3xl lg:bg-transparent bg-white  font-sans lg:py-8 lg:px-24  p-6`}
+            : 'lg:transform-none -translate-x-full '
+        } lg:w-auto w-[60%] lg:absolute lg:bottom-auto lg:right-0  transition-all duration-300 fixed  z-[200] top-0 left-0 bottom-0 lg:flex lg:justify-between lg:items-center lg:rounded-none rounded-3xl lg:bg-transparent bg-white  font-sans lg:py-8 lg:px-24  p-6`}
       >
         <div className="text-[#026FC2] lg:flex items-center justify-center hidden">
           <Logo />
@@ -193,7 +193,7 @@ export default function Navbar() {
             </div>
           </div>{' '}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
