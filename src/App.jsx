@@ -21,6 +21,8 @@ function App() {
   const [user, setUser] = useState([]);
   const [currentUser] = useAuthState(auth);
 
+  console.log(currentUser && currentUser.uid);
+
   useEffect(() => {
     const getUser = async () => {
       const docRef = await doc(db, 'users', currentUser.uid);

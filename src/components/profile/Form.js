@@ -1,10 +1,8 @@
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
-
 
 export default function Form({ setEditForm, photo, user }) {
   const [currentUser] = useAuthState(auth);
@@ -16,15 +14,18 @@ export default function Form({ setEditForm, photo, user }) {
   // updating user's profile
   const updateProfile = async (e) => {
     e.preventDefault();
+
     const docRef = doc(db, 'users', currentUser.uid);
     await updateDoc(docRef, {
       name,
       surname,
       biography,
       location,
-      photo: (photo ? photo : user.photo)
-    })
-  }
+      photo: photo ? photo : user.photo,
+    });
+
+    await setEditForm(false);
+  };
 
   return (
     <motion.form
@@ -76,7 +77,6 @@ export default function Form({ setEditForm, photo, user }) {
       <h2 className="text-left text-[#4699C2] font-bold py-2">Location: </h2>
       <div className="border border-gray-300 rounded-md">
         <input
-
           placeholder={user.location}
           value={location}
           onChange={(e) => setLocation(e.target.value)}
@@ -88,7 +88,7 @@ export default function Form({ setEditForm, photo, user }) {
         <input
           type="submit"
           value="SAVE"
-          className="bg-[#4699C2] text-white fong-bold w-24 py-3 rounded-full mx-4 font-bold hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
+          className="bg-[#4699C2] cursor-pointer text-white fong-bold w-24 py-3 rounded-full mx-4 font-bold hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
         />
         <input
           onClick={() => {
@@ -102,6 +102,3 @@ export default function Form({ setEditForm, photo, user }) {
     </motion.form>
   );
 }
-
-
-
