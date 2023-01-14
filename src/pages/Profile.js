@@ -10,19 +10,11 @@ import Form from '../components/profile/Form';
 export default function Profile({ user }) {
   const [currentUser] = useAuthState(auth);
   const navigate = useNavigate();
-
   const [editForm, setEditForm] = useState();
   const [photo, setPhoto] = useState(null);
 
   if (!currentUser) navigate('/');
   if (currentUser) {
-
-  console.log(user);
-
-  if (!user) navigate('/');
-  if (user) {
-    const [editForm, setEditForm] = useState();
-
     return (
       <div className=" min-h-screen flex justify-around my-20 flex-col items-center relative">
         <div className="fixed left-0  z-[-1]">
@@ -46,7 +38,11 @@ export default function Profile({ user }) {
           editForm={editForm}
           setEditForm={setEditForm}
         />
-        {editForm ? <Form setEditForm={setEditForm} photo={photo} user={user} /> : <ProfilePosts />}
+        {editForm ? (
+          <Form setEditForm={setEditForm} photo={photo} user={user} />
+        ) : (
+          <ProfilePosts />
+        )}
       </div>
     );
   }
