@@ -1,14 +1,35 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { doc, updateDoc } from 'firebase/firestore';
+import { auth, db } from '../../firebase';
 
-export default function Form({ setEditForm }) {
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [biograhpy, setBiography] = useState('');
-  const [location, setLocation] = useState('');
+export default function Form({ setEditForm, photo, user }) {
+  const [currentUser] = useAuthState(auth);
+  const [name, setName] = useState(user.name);
+  const [surname, setSurname] = useState(user.surname);
+  const [biography, setBiography] = useState(user.biography);
+  const [location, setLocation] = useState(user.location);
+
+  // updating user's profile
+  const updateProfile = async (e) => {
+    e.preventDefault();
+
+    const docRef = doc(db, 'users', currentUser.uid);
+    await updateDoc(docRef, {
+      name,
+      surname,
+      biography,
+      location,
+      photo: photo ? photo : user.photo,
+    });
+
+    await setEditForm(false);
+  };
 
   return (
     <motion.form
+      onSubmit={updateProfile}
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.45, ease: 'easeOut' }}
@@ -20,10 +41,10 @@ export default function Form({ setEditForm }) {
           <div className="border border-gray-300 rounded-md">
             <input
               type="text"
-              required
+              placeholder={user.name}
               value={name}
               onChange={(e) => setName(e.target.value)}
-              className="w-full py-2 opacity-50 focus:opacity-100"
+              className="w-full py-2 px-4 opacity-50 focus:opacity-100"
             />
           </div>
         </div>
@@ -33,10 +54,10 @@ export default function Form({ setEditForm }) {
           <div className="border border-gray-300 rounded-md">
             <input
               type="text"
-              required
+              placeholder={user.surname}
               value={surname}
               onChange={(e) => setSurname(e.target.value)}
-              className="opacity-50 focus:opacity-100 w-full py-2"
+              className="opacity-50 px-4 focus:opacity-100 w-full py-2"
             />
           </div>
         </div>
@@ -45,22 +66,21 @@ export default function Form({ setEditForm }) {
       <h2 className="text-left text-[#4699C2] font-bold py-2">Biograhpy: </h2>
       <div className="border border-gray-300 rounded-md">
         <textarea
-          required
-          value={biograhpy}
+          value={biography}
           onChange={(e) => setBiography(e.target.value)}
-          className="opacity-50 focus:opacity-100 w-full py-4"
+          className="opacity-50 px-4 focus:opacity-100 w-full py-4"
         >
-          testing
+          {user.biography}
         </textarea>
       </div>
 
       <h2 className="text-left text-[#4699C2] font-bold py-2">Location: </h2>
       <div className="border border-gray-300 rounded-md">
         <input
-          required
+          placeholder={user.location}
           value={location}
           onChange={(e) => setLocation(e.target.value)}
-          className="opacity-50 focus:opacity-100 w-full py-2"
+          className="opacity-50 px-4 focus:opacity-100 w-full py-2"
         />
       </div>
 
@@ -68,7 +88,7 @@ export default function Form({ setEditForm }) {
         <input
           type="submit"
           value="SAVE"
-          className="bg-[#4699C2] text-white fong-bold w-24 py-3 rounded-full mx-4 font-bold hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
+          className="bg-[#4699C2] cursor-pointer text-white fong-bold w-24 py-3 rounded-full mx-4 font-bold hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
         />
         <input
           onClick={() => {

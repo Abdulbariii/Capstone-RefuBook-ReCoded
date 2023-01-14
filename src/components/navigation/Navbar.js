@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -6,12 +7,12 @@ import { auth } from '../../firebase';
 
 import { NavbarAvatar, Logo } from './NavSvg';
 
-export default function Navbar() {
+export default function Navbar({ userInfo }) {
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [user] = useAuthState(auth);
   return (
     <section className="z-[100px] ">
-      <div className="lg:hidden absolute z-50 top-0 right-0 left-0  bg-transparent flex  items-center cursor-pointer px-8 pt-8">
+      <div className="lg:hidden absolute top-0 right-0 left-0 flex  items-center cursor-pointer px-8 pt-8">
         <svg
           className="cursor-pointer "
           onClick={() => {
@@ -72,7 +73,7 @@ export default function Navbar() {
             {user && (
               <div className="w-28 h-28 bg-[#eb5757] rounded-full">
                 <img
-                  src={user.photoURL}
+                  src={userInfo.photo}
                   alt=""
                   className="rounded-full w-full h-full"
                   referrerPolicy="no-referrer"
@@ -80,7 +81,7 @@ export default function Navbar() {
               </div>
             )}
             <p className="font-sans text-base font-medium text-[#3F3B3B] mt-1">
-              {user ? user.displayName : 'User Name'}
+              {user ? `${userInfo.name} ${userInfo.surname}` : 'User Name'}
             </p>
           </div>
           <div className="text-[#9DAFBD] font-normal lg:w-full w-[124px] flex lg:flex-row flex-col lg:justify-end items-center  justify-between lg:gap-12 gap-10 text-lg  leading-[14.06px] lg:leading-4 tracking-[-0.5px]">
@@ -158,7 +159,7 @@ export default function Navbar() {
               Contact
             </NavLink>
 
-            {/* <div className="hidden lg:block "> */}
+            {/* <div className='hidden lg:block '> */}
             <div className="">
               <NavLink
                 className={({ isActive }) =>

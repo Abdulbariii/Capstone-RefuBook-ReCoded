@@ -7,24 +7,29 @@ import ProfilePosts from '../components/profile/ProfilePosts';
 
 import Form from '../components/profile/Form';
 
-export default function Profile() {
-  const [user] = useAuthState(auth);
+export default function Profile({ user }) {
+  const [currentUser] = useAuthState(auth);
   const navigate = useNavigate();
-  console.log(user);
+  const [editForm, setEditForm] = useState();
+  const [photo, setPhoto] = useState(null);
 
-  if (!user) navigate('/');
-  if (user) {
-    const [editForm, setEditForm] = useState();
+  if (!currentUser) navigate('/');
+  if (currentUser) {
     return (
       <div className=" min-h-screen flex justify-around my-20 flex-col items-center relative">
         <div className="fixed z-[-10]  lg:top-0 left-0 bottom-0 lg:right-auto right-0 lg:w-[50%] w-full lg:h-full h-[40%] bg-[#e5faff]  rounded-t-[50%]  lg:rounded-l-[24px]  lg:rounded-r-full  " />
         <UserImage
-          userImg={user && user.photoURL}
-          displayName={user && user.displayName}
+          choosePhoto={setPhoto}
+          userImg={currentUser && user.photo}
+          displayName={currentUser && `${user.name} ${user.surname}`}
           editForm={editForm}
           setEditForm={setEditForm}
         />
-        {editForm ? <Form setEditForm={setEditForm} /> : <ProfilePosts />}
+        {editForm ? (
+          <Form setEditForm={setEditForm} photo={photo} user={user} />
+        ) : (
+          <ProfilePosts />
+        )}
       </div>
     );
   }
