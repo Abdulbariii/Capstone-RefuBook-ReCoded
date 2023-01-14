@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { collection, addDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
@@ -6,15 +7,15 @@ import { motion } from 'framer-motion';
 
 import { storage, db, auth } from '../../firebase';
 
-function WriteForm({ setBlogPending, setBlogPosted }) {
+function WriteForm({ setBlogPending, setBlogPosted, user }) {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [blog, setBlog] = useState('');
   const [selectedFile, setSelectedFile] = useState();
-
+  const [currentUser] = useAuthState(auth);
   // const imageList = ref(storage, `${title}/`);
-  const [user] = useAuthState(auth);
-  console.log(user);
+
+  console.log(currentUser && currentUser.uid);
   const addData = async (
     img,
     blogTitle,
@@ -51,9 +52,9 @@ function WriteForm({ setBlogPending, setBlogPosted }) {
           title,
           description,
           blog,
-          user && user.displayName,
-          user && user.photoURL,
-          user && user.uid
+          user && user.surname,
+          user && user.photo,
+          user && currentUser.uid
         );
         setBlogPosted(true);
         setTimeout(() => {

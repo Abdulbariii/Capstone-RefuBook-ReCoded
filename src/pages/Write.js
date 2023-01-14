@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import WriteForm from '../components/write/WriteForm';
 import Notification from '../components/contact/Notification';
 
-export default function Write() {
+export default function Write({ user }) {
   const [blogPosted, setBlogPosted] = useState(false);
   const [blogPending, setBlogPending] = useState(false);
 
@@ -21,6 +21,7 @@ export default function Write() {
       </div>
 
       <WriteForm
+        user={user && user}
         setBlogPending={setBlogPending}
         setBlogPosted={setBlogPosted}
       />

@@ -2,6 +2,41 @@
   text-align: center;
 }
 
+::-webkit-scrollbar {
+  width: 8px; /* width of the entire scrollbar */
+}
+::-webkit-scrollbar-thumb {
+  background-color: #4699c2; /* color of the scroll thumb */
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+*:focus {
+  outline: none;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scrollbar-color: #4699c2 #ffffff;
+  scrollbar-width: thin;
+}
+
+html,
+body {
+  scroll-behavior: smooth !important;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;

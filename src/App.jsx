@@ -52,7 +52,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile user={user && user} />} />
-        <Route path="/write" element={<Write />} />
+        <Route path="/write" element={<Write user={user && user} />} />
       </Routes>
       <Footer />
     </div>
