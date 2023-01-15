@@ -10,7 +10,7 @@ import Contact from './pages/Contact';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
-
+import SingleBlog from './pages/SingleBlog';
 import Blog from './pages/Blog';
 import Footer from './components/Footer';
 import Write from './pages/Write';
@@ -53,6 +53,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile user={user && user} />} />
         <Route path="/write" element={<Write user={user && user} />} />
+        <Route path="/singleblog/:id" element={<SingleBlog />} />
       </Routes>
       <Footer />
     </div>

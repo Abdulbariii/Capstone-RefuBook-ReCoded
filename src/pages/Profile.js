@@ -16,7 +16,7 @@ export default function Profile({ user }) {
   if (!currentUser) navigate('/');
   if (currentUser) {
     return (
-      <div className=" min-h-screen flex justify-around my-20 flex-col items-center relative">
+      <div className=" min-h-screen flex justify-start gap-24 py-20 flex-col items-center relative">
         <div className="fixed z-[-10]  lg:top-0 left-0 bottom-0 lg:right-auto right-0 lg:w-[50%] w-full lg:h-full h-[40%] bg-[#e5faff]  rounded-t-[50%]  lg:rounded-l-[24px]  lg:rounded-r-full  " />
         <UserImage
           choosePhoto={setPhoto}

@@ -1,98 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-
+import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getDocs, collection, query, where } from 'firebase/firestore';
 import { db, auth } from '../../firebase';
+import truncate from '../../utility/TruncateText';
 
 export default function ProfilePosts() {
-  const posts = [
-    {
-      username: 'Old trafford',
-      title: 'Hello',
-      desription: 'Lorem ipsum dolor dsgsgs',
-      image:
-        'https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    },
-    {
-      username: 'Old trafford',
-      title: 'Hello',
-      desription: 'Lorem ipsum dolor dsgsgs',
-      image:
-        'https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    },
-    {
-      username: 'Old trafford',
-      title: 'Hello',
-      desription: 'Lorem ipsum dolor dsgsgs',
-      image:
-        'https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    },
-    {
-      username: 'Old trafford',
-      title: 'Hello',
-      desription: 'Lorem ipsum dolor dsgsgs',
-      image:
-        'https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    },
-    {
-      username: 'Old trafford',
-      title: 'Hello',
-      desription: 'Lorem ipsum dolor dsgsgs',
-      image:
-        'https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    },
-    {
-      username: 'Old trafford',
-      title: 'Hello',
-      desription: 'Lorem ipsum dolor dsgsgs',
-      image:
-        'https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    },
-    {
-      username: 'Old trafford',
-      title: 'Hello',
-      desription: 'Lorem ipsum dolor dsgsgs',
-      image:
-        'https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    },
-    {
-      username: 'Old trafford',
-      title: 'Hello',
-      desription: 'Lorem ipsum dolor dsgsgs',
-      image:
-        'https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    },
-    {
-      username: 'Old trafford',
-      title: 'Hello',
-      desription: 'Lorem ipsum dolor dsgsgs',
-      image:
-        'https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    },
-    {
-      username: 'Old',
-      title: 'Hello',
-      desription: 'Lorem ipsum dolor dsgsgs',
-      image:
-        'https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    },
-    {
-      username: 'Old trafford',
-      title: 'Hello',
-      desription: 'Lorem ipsum dolor dsgsgs',
-      image:
-        'https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    },
-    {
-      username: 'Old trafford',
-      title: 'Hello',
-      desription: 'Lorem ipsum dolor dsgsgs',
-      image:
-        'https://images.unsplash.com/photo-1642763907630-17bad0853f15?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-    },
-  ];
-
   const [blogsPost, setBlogsPost] = useState([]);
 
   const [currentUser] = useAuthState(auth);
@@ -135,18 +49,21 @@ export default function ProfilePosts() {
     >
       {blogsPost &&
         blogsPost.slice(prev, next).map((post) => (
-          <div className="w-64 h-40 p-5 cursor-pointer rounded-2xl shadow-xl bg-white flex flex-col justify-around items-start">
-            <h1 className="text-2xl font-medium">{post.Title}</h1>
-            <p className="text-lg">{post.Description}</p>
-            <div className="flex  pt-5  justify-start items-center">
-              <img
-                className="object-cover h-11 w-11 rounded-full mr-5"
-                alt="userProfile"
-                src={post.userImg}
-              />
-              <p className="text-lg text-[#4699C2] "> {post.Username}</p>
+          <Link to={`/singleblog/${post.blogId}`}>
+            <div className="w-fit  hover:bg-[#4699c227]  hover:scale-110 transition-all h-fit p-5 cursor-pointer rounded-2xl shadow-xl bg-white flex flex-col justify-around items-start">
+              <h1 className="text-2xl font-medium">{post.Title}</h1>
+
+              <p className="text-lg"> {truncate(post.Description)}</p>
+              <div className="flex  pt-5  justify-start items-center">
+                <img
+                  className="object-cover h-11 w-11 rounded-full mr-5"
+                  alt="userProfile"
+                  src={post.userImg}
+                />
+                <p className="text-lg text-[#4699C2] "> {post.Username}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
 
       {blogsPost && blogsPost.length > 6 ? (
@@ -166,7 +83,7 @@ export default function ProfilePosts() {
           <button
             type="button"
             onClick={() => {
-              setNext(posts.length <= 12 ? posts.length : 6);
+              setNext(blogsPost.length <= 12 ? blogsPost.length : 6);
               setPrev(7);
             }}
             className={` ${

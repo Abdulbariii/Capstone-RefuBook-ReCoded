@@ -4,6 +4,7 @@ import { collection, addDoc } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { motion } from 'framer-motion';
+import { v4 as uuid } from 'uuid';
 
 import { storage, db, auth } from '../../firebase';
 
@@ -15,7 +16,6 @@ function WriteForm({ setBlogPending, setBlogPosted, user }) {
   const [currentUser] = useAuthState(auth);
   // const imageList = ref(storage, `${title}/`);
 
-  console.log(currentUser && currentUser.uid);
   const addData = async (
     img,
     blogTitle,
@@ -23,7 +23,8 @@ function WriteForm({ setBlogPending, setBlogPosted, user }) {
     blogPost,
     username,
     profileImg,
-    userid
+    userid,
+    blogIdUnique
   ) => {
     const docRef = await addDoc(collection(db, 'blogs'), {
       Image: img,
@@ -33,6 +34,7 @@ function WriteForm({ setBlogPending, setBlogPosted, user }) {
       Username: username,
       userImg: profileImg,
       uid: userid,
+      blogId: blogIdUnique,
     });
     console.log('Document written with ID: ', docRef.id);
   };
@@ -54,7 +56,8 @@ function WriteForm({ setBlogPending, setBlogPosted, user }) {
           blog,
           user && user.surname,
           user && user.photo,
-          user && currentUser.uid
+          user && currentUser.uid,
+          uuid()
         );
         setBlogPosted(true);
         setTimeout(() => {
