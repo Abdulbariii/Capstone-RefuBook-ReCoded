@@ -35,6 +35,7 @@ html {
 html,
 body {
   scroll-behavior: smooth !important;
+  overflow-x: hidden;
 }
 
 .App-logo {

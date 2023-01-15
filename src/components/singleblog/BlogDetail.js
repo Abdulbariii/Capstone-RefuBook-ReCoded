@@ -36,7 +36,7 @@ export default function BlogDetail({ setBlogLoading }) {
     <div>
       {blogsPost &&
         blogsPost.map((post) => (
-          <div className="flex w-[556px] justify-center items-start flex-col gap-10">
+          <div className="flex w-[556px] px-10 lg:px-0 max-w-5xl justify-center items-start flex-col gap-10">
             <h1 className="text-2xl  self-center font-bold text-black">
               {post.Title}
             </h1>
