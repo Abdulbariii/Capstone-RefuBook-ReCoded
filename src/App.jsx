@@ -14,6 +14,7 @@ import SingleBlog from './pages/SingleBlog';
 import Blog from './pages/Blog';
 import Footer from './components/Footer';
 import Write from './pages/Write';
+import Chat from './components/chat/Chat';
 import './App.css';
 import Navbar from './components/navigation/Navbar';
 
@@ -55,6 +56,7 @@ function App() {
         <Route path="/write" element={<Write user={user && user} />} />
         <Route path="/singleblog/:id" element={<SingleBlog />} />
       </Routes>
+      <Chat />
       <Footer />
     </div>
   );

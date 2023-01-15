@@ -16,6 +16,7 @@
     "firebase": "^9.15.0",
     "framer-motion": "^8.1.5",
     "motion": "^10.15.3",
+    "react-chatbot-kit": "^2.1.2",
     "react-devtools": "^4.27.1",
     "react-firebase-hooks": "^5.1.1",
     "react-is": "^18.2.0",
