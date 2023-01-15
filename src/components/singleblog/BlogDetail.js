@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useLocation } from 'react-router';
+import { FacebookShareButton, TwitterShareButton } from 'react-share';
 import { getDocs, collection, query, where } from 'firebase/firestore';
 import { db } from '../../firebase';
+import twitter from '../../assets/images/Twitter.svg';
+
+import facebook from '../../assets/images/Shape.svg';
 
 export default function BlogDetail({ setBlogLoading }) {
   const { id } = useParams();
+  const location = useLocation();
   const [blogsPost, setBlogsPost] = useState([]);
 
   useEffect(() => {
@@ -40,11 +45,43 @@ export default function BlogDetail({ setBlogLoading }) {
             <h1 className="text-2xl  self-center font-bold text-black">
               {post.Title}
             </h1>
-            <img
-              alt="blog-img"
-              className="h-[440px] w-full object-cover"
-              src={post.Image}
-            />
+
+            <div className="h-[440px] w-full relative">
+              <img
+                alt="blog-img"
+                className="w-full h-full object-cover "
+                src={post.Image}
+              />
+              <div className="flex flex-col gap-12 absolute right-2 bottom-2">
+                <TwitterShareButton
+                  windowWidth={600}
+                  windowHeight={500}
+                  url={`https://refubook-org.netlify.app${location.pathname}`}
+                  title={post.Title}
+                  hashtag={['Refubook', 'capstone']}
+                >
+                  <img
+                    className="w-10 cursor-pointer h-10 object-contain"
+                    alt="twitter"
+                    src={twitter}
+                  />
+                </TwitterShareButton>
+
+                <FacebookShareButton
+                  windowWidth={600}
+                  windowHeight={500}
+                  url={`https://refubook-org.netlify.app${location.pathname}`}
+                  quote={post.Title}
+                  hashtag="#refubook"
+                >
+                  <img
+                    className="w-10 cursor-pointer h-10 object-contain"
+                    alt="facebook"
+                    src={facebook}
+                  />
+                </FacebookShareButton>
+              </div>
+            </div>
             <div className="flex gap-3 self-center">
               <p className="text-black text-lg ">By</p>
               <img

@@ -1,27 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { Logo } from './navigation/NavSvg';
 
 export default function Footer() {
   return (
     <div className="container px-20 flex flex-wrap justify-between w-full gap-5 items-center py-10 ">
       <div className="flex gap-10">
-        <a href="#home">
-          <img src="" alt="RfuBook" />
-        </a>
+        <Logo />
         <div className="home text-sky-700">
           {' '}
-          <a href="#home">Home</a>
+          <Link to="/">Home</Link>
         </div>
         <div className="home text-sky-700">
           {' '}
-          <a href="#About">About</a>
+          <Link to="about">About</Link>
         </div>
         <div className="home text-sky-700">
           {' '}
-          <a href="#Contact">contact</a>
+          <Link to="contact">contact</Link>
         </div>
         <div className="home text-sky-700">
           {' '}
-          <a href="#Blog">Blog</a>
+          <Link to="blog">Blog</Link>
         </div>
       </div>
 
@@ -30,7 +30,7 @@ export default function Footer() {
           type="button"
           className=" py-2 px-4 bg-sky-700 text-white font-roboto rounded-3xl shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 w-1/2/6 "
         >
-          sign up{' '}
+          <Link to="signup">sign up </Link>
         </button>
         <button
           type="button"

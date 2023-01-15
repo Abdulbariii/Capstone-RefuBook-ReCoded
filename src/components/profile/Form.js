@@ -21,7 +21,7 @@ export default function Form({ setEditForm, photo, user }) {
       surname,
       biography,
       location,
-      photo: photo ? photo : user.photo,
+      photo: photo || user.photo,
     });
 
     await setEditForm(false);
