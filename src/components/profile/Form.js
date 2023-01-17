@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { doc, updateDoc } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  updateDoc,
+  writeBatch,
+  getDocs,
+} from 'firebase/firestore';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUser } from '../../features/userSlice';
 import { auth, db } from '../../firebase';
 
-export default function Form({ setEditForm, photo, user }) {
+export default function Form({ setEditForm, photo }) {
+  const user = useSelector((state) => state.user);
   const [currentUser] = useAuthState(auth);
   const [name, setName] = useState(user.name);
   const [surname, setSurname] = useState(user.surname);
   const [biography, setBiography] = useState(user.biography);
   const [location, setLocation] = useState(user.location);
-
+  const dispatch = useDispatch();
   // updating user's profile
   const updateProfile = async (e) => {
     e.preventDefault();
@@ -21,10 +30,8 @@ export default function Form({ setEditForm, photo, user }) {
       surname,
       biography,
       location,
-      photo: photo || user.photo,
+      photo: photo ? photo : user.photo,
     });
-
-    await setEditForm(false);
   };
 
   return (

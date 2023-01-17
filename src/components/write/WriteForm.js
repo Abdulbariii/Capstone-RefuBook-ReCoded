@@ -1,7 +1,7 @@
 import { useState } from 'react';
-
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useSelector } from 'react-redux';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { motion } from 'framer-motion';
 import { v4 as uuid } from 'uuid';
@@ -13,7 +13,9 @@ function WriteForm({ setBlogPending, setBlogPosted, user }) {
   const [description, setDescription] = useState('');
   const [blog, setBlog] = useState('');
   const [selectedFile, setSelectedFile] = useState();
-  const [currentUser] = useAuthState(auth);
+  const userInfo = useSelector((state) => state.user);
+  console.log('infooooo');
+  console.log(userInfo);
   // const imageList = ref(storage, `${title}/`);
 
   const addData = async (
@@ -34,7 +36,7 @@ function WriteForm({ setBlogPending, setBlogPosted, user }) {
       Username: username,
       userImg: profileImg,
       uid: userid,
-      blogId: blogIdUnique,
+      date: serverTimestamp(),
     });
     console.log('Document written with ID: ', docRef.id);
   };
@@ -54,10 +56,9 @@ function WriteForm({ setBlogPending, setBlogPosted, user }) {
           title,
           description,
           blog,
-          user && user.surname,
-          user && user.photo,
-          user && currentUser.uid,
-          uuid()
+          user && `${userInfo.name} ${userInfo.surname}`,
+          user && userInfo.photo,
+          user && user.uid
         );
         setBlogPosted(true);
         setTimeout(() => {

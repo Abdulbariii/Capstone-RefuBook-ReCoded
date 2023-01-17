@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 
-import { motion } from 'framer-motion';
 import { NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useSelector } from 'react-redux';
 import { auth } from '../../firebase';
 
 import { NavbarAvatar, Logo } from './NavSvg';
 
-export default function Navbar({ userInfo }) {
+export default function Navbar() {
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [user] = useAuthState(auth);
+  const userInfo = useSelector((state) => state.user);
   return (
     <section className="z-[100px] ">
       <div className="lg:hidden absolute top-0 right-0 left-0 flex  items-center cursor-pointer px-8 pt-8">
@@ -33,7 +34,7 @@ export default function Navbar({ userInfo }) {
         </svg>
       </div>
 
-      <motion.div
+      <div
         className={`${
           burgerStatus
             ? 'lg:transform-none translate-x-0'
@@ -194,7 +195,7 @@ export default function Navbar({ userInfo }) {
             </div>
           </div>{' '}
         </div>
-      </motion.div>
+      </div>
     </section>
   );
 }
