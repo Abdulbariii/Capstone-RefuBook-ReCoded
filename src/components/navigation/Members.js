@@ -5,8 +5,8 @@ export default function Members() {
   const members = [
     {
       name: 'Abdulbari Qaisar',
-      location: 'Iraq',
-      desc: 'Software Engineer',
+      location: 'Erbil',
+      desc: 'Frontend developer',
       image: AbdulbariImg,
     },
     {
