@@ -12,7 +12,7 @@ import cancel from '../../assets/images/cancel.png';
 export default function Chat() {
   const [showChat, setShowChat] = useState(false);
   return (
-    <div className="right-5 bottom-5 fixed flex w-fit justify-start flex-row-reverse items-end gap-10">
+    <div className="right-5 z-30 bottom-5 fixed flex w-fit justify-start flex-row-reverse items-end gap-10">
       <button
         type="button"
         onClick={() => {
@@ -29,6 +29,7 @@ export default function Chat() {
 
       {showChat && (
         <motion.div
+          className="z-30 shadow-xl"
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{
             opacity: 1,
