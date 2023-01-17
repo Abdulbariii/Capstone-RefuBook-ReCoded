@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router';
 import { useDispatch } from 'react-redux';

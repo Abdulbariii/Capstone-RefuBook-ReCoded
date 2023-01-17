@@ -1,3 +1,6 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unneeded-ternary */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -23,15 +26,43 @@ export default function Form({ setEditForm, photo }) {
   // updating user's profile
   const updateProfile = async (e) => {
     e.preventDefault();
-
     const docRef = doc(db, 'users', currentUser.uid);
     await updateDoc(docRef, {
       name,
       surname,
       biography,
       location,
-      photo: photo ? photo : user.photo,
+      photo: photo || user.photo,
     });
+    dispatch(
+      updateUser({
+        name,
+        surname,
+        biography,
+        location,
+        photo: photo || user.photo,
+      })
+    );
+
+    // to update username and imageProfile of blogs
+    const updateBlog = async () => {
+      const batch = writeBatch(db);
+      const data = collection(db, 'blogs');
+      const querySnapshot = await getDocs(data);
+      querySnapshot.forEach((doc) => {
+        if (doc.data().uid === currentUser.uid) {
+          batch.update(doc.ref, {
+            Username: `${name} ${surname}`,
+            userImg: photo || user.photo,
+          });
+        }
+      });
+
+      batch.commit();
+    };
+    updateBlog();
+
+    await setEditForm(false);
   };
 
   return (

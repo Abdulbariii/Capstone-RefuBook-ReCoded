@@ -17,6 +17,7 @@ export default function Profile() {
   console.log(user);
 
   if (!currentUser) navigate('/');
+
   if (currentUser) {
     return (
       <div className=" min-h-screen flex justify-start gap-24 py-20 flex-col items-center relative">
