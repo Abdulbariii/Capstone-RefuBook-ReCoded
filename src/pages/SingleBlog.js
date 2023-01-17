@@ -7,7 +7,7 @@ export default function SingleBlog() {
 
   return (
     <div className="min-h-screen flex justify-center items-start py-32 px-20">
-      <div>
+      <div className="absolute left-2/4 top-2/4 translate-x-[-50%] translate-y-[-50%] ">
         <TailSpin
           height="120"
           width="120"
@@ -21,7 +21,7 @@ export default function SingleBlog() {
         {blogLoading && <p className="text-2xl text-[#4699C2] pt-4">Loading</p>}
       </div>
 
-      <BlogDetail setBlogLoading={setBlogLoading} />
+      <BlogDetail blogLoading={blogLoading} setBlogLoading={setBlogLoading} />
     </div>
   );
 }
