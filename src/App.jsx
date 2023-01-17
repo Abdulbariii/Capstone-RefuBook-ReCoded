@@ -10,6 +10,7 @@ import Contact from './pages/Contact';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
+
 import Blog from './pages/Blog';
 import Footer from './components/Footer';
 import Write from './pages/Write';
@@ -20,14 +21,16 @@ function App() {
   const [user, setUser] = useState([]);
   const [currentUser] = useAuthState(auth);
 
+  console.log(currentUser && currentUser.uid);
+
   useEffect(() => {
     const getUser = async () => {
       const docRef = await doc(db, 'users', currentUser.uid);
       try {
-        await onSnapshot(docRef, (doc) => {
+        await onSnapshot(docRef, (docc) => {
           setUser({
-            ...doc.data(),
-            id: doc.id,
+            ...docc.data(),
+            id: docc.id,
           });
         });
       } catch (e) {

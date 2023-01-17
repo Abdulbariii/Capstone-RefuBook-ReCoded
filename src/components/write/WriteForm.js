@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { motion } from 'framer-motion';
@@ -32,6 +32,7 @@ function WriteForm({ setBlogPending, setBlogPosted }) {
       Username: username,
       userImg: profileImg,
       uid: userid,
+      date: serverTimestamp()
     });
     console.log('Document written with ID: ', docRef.id);
   };
