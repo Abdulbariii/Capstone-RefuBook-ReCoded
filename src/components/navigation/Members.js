@@ -24,11 +24,10 @@ export default function Members() {
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDe-uOj0YtwteyEVNQtNRw3sCn_EWJuMeGYbPzbVGoAb5Euz6Fh_krKHNp5PSknTIEMfg&usqp=CAU',
     },
     {
-      name: 'Emily Jorgensen',
-      location: 'Author at Panoply Store',
+      name: 'Wafaa AlHayek',
+      location: 'Palestine',
       desc: 'Software Engineer',
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDe-uOj0YtwteyEVNQtNRw3sCn_EWJuMeGYbPzbVGoAb5Euz6Fh_krKHNp5PSknTIEMfg&usqp=CAU',
+      image: Wafaa_Alhayek_Palestine_2022,
     },
   ];
   return (
