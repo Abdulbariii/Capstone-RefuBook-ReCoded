@@ -98,7 +98,7 @@ export default function Blogs() {
           </button>
         </div>
       </div>
-      {blogs.length > 3 && (
+      {blogs.length > 3 && !searchValue && (
         <div className="flex justify-center items-center ">
           <Swiper
             breakpoints={{

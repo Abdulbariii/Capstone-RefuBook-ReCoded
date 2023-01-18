@@ -50,7 +50,7 @@ export default function ProfilePosts() {
       {blogsPost &&
         blogsPost.slice(prev, next).map((post) => (
           <Link to={`/singleblog/${post.blogId}`}>
-            <div className="lg:w-fit  hover:bg-[#4699c227] w-64  hover:scale-110 transition-all h-fit p-5 cursor-pointer rounded-2xl shadow-xl bg-white flex flex-col justify-around items-start">
+            <div className="  hover:bg-[#4699c227] w-64  hover:scale-110 transition-all h-fit p-5 cursor-pointer rounded-2xl shadow-xl bg-white flex flex-col justify-around items-start">
               <h1 className="text-2xl font-medium">{post.Title}</h1>
 
               <p className="text-lg"> {truncate(post.Description)}</p>

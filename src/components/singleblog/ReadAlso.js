@@ -34,7 +34,7 @@ export default function ReadAlso({ uidBlog, id, blogLoading }) {
   console.log(blogsPost && blogsPost);
 
   return (
-    <div className="mt-32 ">
+    <div className="pt-32 flex-col flex gap-10 h-fit w-fit">
       {!blogLoading && (
         <h1 className="text-lg font-bold text-start text-black">
           Read also :{' '}
@@ -44,7 +44,7 @@ export default function ReadAlso({ uidBlog, id, blogLoading }) {
       {blogsPost &&
         blogsPost.map((blog) => (
           <Link to={`/singleblog/${blog.blogId}`}>
-            <div className="w-72 h-96   bg-[#ffffff] flex flex-col  mt-9  mb-11">
+            <div className="w-72 h-fit   bg-[#ffffff] flex flex-col   ">
               <img
                 src={blog.Image}
                 alt="blog pic"
