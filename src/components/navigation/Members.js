@@ -1,11 +1,12 @@
 import React from 'react';
 import AbdulbariImg from '../../assets/images/AbdulbariImage.jpg';
+import WafaImg from '../../assets/images/Wafaa_Alhayek_Palestine_2022.jpeg';
 
 export default function Members() {
   const members = [
     {
       name: 'Abdulbari Qaisar',
-      location: 'Iraq',
+      location: 'KRI / Iraq',
       desc: 'Software Engineer',
       image: AbdulbariImg,
     },
@@ -27,7 +28,7 @@ export default function Members() {
       name: 'Wafaa AlHayek',
       location: 'Palestine',
       desc: 'Software Engineer',
-      image: Wafaa_Alhayek_Palestine_2022,
+      image: WafaImg,
     },
   ];
   return (
