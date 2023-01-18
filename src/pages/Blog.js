@@ -58,13 +58,13 @@ export default function Blogs() {
           <input placeholder='Search...' onChange={handleSearch} className="rounded-3xl border-2 outline-0 pl-2 focus:py-1  " onKeyUp={(event) => {
             if (event.key === 'Enter') {
               if (searchValue) {
-                location.href = "#destinationDiv"
+                window.location.href = "#destinationDiv"
               }
             }
           }} />
           <button type='button' onClick={() => {
             if (searchValue) {
-              location.href = "#destinationDiv"
+              window.location.href = "#destinationDiv"
             }
           }}
             tabIndex={0} className='absolute mr-2.5 ' >
