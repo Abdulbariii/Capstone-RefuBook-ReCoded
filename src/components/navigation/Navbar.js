@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 
-
-
 import { NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useSelector } from 'react-redux';
 import { auth } from '../../firebase';
 
 import { NavbarAvatar, Logo } from "./NavSvg"
 
 
-
-export default function Navbar({ userInfo }) {
+export default function Navbar() {
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [user] = useAuthState(auth);
+  const userInfo = useSelector((state) => state.user);
   return (
     <section className='z-[100px] '>
 
@@ -67,7 +66,6 @@ export default function Navbar({ userInfo }) {
               >
                 Profile
               </NavLink>)}
-
             {user && (
               <NavLink
                 onClick={() => {
@@ -140,3 +138,4 @@ export default function Navbar({ userInfo }) {
     </section>
   );
 }
+

@@ -15,7 +15,6 @@ export default function Blogs() {
   const [blogs, setBlogs] = useState([]);
   const [searchValue, setSearchValue] = useState("");
   const [sortBy, setSortBy] = useState("Newest")
-
   useEffect(() => {
     const blogsRef = collection(db, "blogs");
     const querySnapshot = query(blogsRef, orderBy("date", sortBy === "Newest" ? "desc" : "asc"))
@@ -32,6 +31,7 @@ export default function Blogs() {
 
   const handleSearch = (e) => setSearchValue(e.target.value);
   const handleSort = (e) => setSortBy(e.target.value);
+
   const filterBlogs = blogs.filter((blog) => {
     return ((blog.Title).toLowerCase()).includes(searchValue.toLowerCase())
   })
@@ -57,11 +57,15 @@ export default function Blogs() {
         <div className='w-40 flex justify-end items-center relative '>
           <input placeholder='Search...' onChange={handleSearch} className="rounded-3xl border-2 outline-0 pl-2 focus:py-1  " onKeyUp={(event) => {
             if (event.key === 'Enter') {
-              searchValue ? location.href = "#destinationDiv" : "";
+              if (searchValue) {
+                location.href = "#destinationDiv"
+              }
             }
           }} />
-          <button onClick={() => {
-            searchValue ? location.href = "#destinationDiv" : "";
+          <button type='button' onClick={() => {
+            if (searchValue) {
+              location.href = "#destinationDiv"
+            }
           }}
             tabIndex={0} className='absolute mr-2.5 ' >
             <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +75,7 @@ export default function Blogs() {
         </div>
 
       </div>
-      <div className="flex justify-center items-center ">
+      {(blogs.length > 3) && <div className="flex justify-center items-center ">
         <Swiper
           breakpoints={{
 
@@ -91,7 +95,7 @@ export default function Blogs() {
 
           modules={[FreeMode, Pagination, Navigation]}
         >
-          {randomBlogs.slice(0, 8).map((blog) => {
+          {randomBlogs.slice(0, 9).map((blog) => {
             return (
               <SwiperSlide key={blog.id}>
 
@@ -118,9 +122,7 @@ export default function Blogs() {
 
 
         </Swiper>
-
-
-      </div>
+      </div>}
 
       {/* the bottom cards */}
       <div id="destinationDiv" className="flex justify-center items-center flex-wrap mt-16 gap-y-6  ">

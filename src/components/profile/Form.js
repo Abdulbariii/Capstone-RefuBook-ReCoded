@@ -2,17 +2,20 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { doc, updateDoc } from "firebase/firestore";
+import { collection, doc, updateDoc, writeBatch, getDocs } from 'firebase/firestore';
+import { useSelector, useDispatch } from 'react-redux';
+import { updateUser } from '../../features/userSlice';
 import { auth, db } from '../../firebase';
 
 
-export default function Form({ setEditForm, photo, user }) {
+export default function Form({ setEditForm, photo }) {
+  const user = useSelector((state) => state.user);
   const [currentUser] = useAuthState(auth);
   const [name, setName] = useState(user.name);
   const [surname, setSurname] = useState(user.surname);
   const [biography, setBiography] = useState(user.biography);
   const [location, setLocation] = useState(user.location);
-
+  const dispatch = useDispatch();
   // updating user's profile
   const updateProfile = async (e) => {
     e.preventDefault();
@@ -22,9 +25,38 @@ export default function Form({ setEditForm, photo, user }) {
       surname,
       biography,
       location,
-      photo: (photo ? photo : user.photo)
-    })
+      photo: photo || user.photo
+    });
+    dispatch(updateUser({
+      name,
+      surname,
+      biography,
+      location,
+      photo: photo || user.photo
+    }));
+
+    // to update username and imageProfile of blogs
+    const updateBlog = async () => {
+      const batch = writeBatch(db);
+      const data = collection(db, 'blogs');
+      const querySnapshot = await getDocs(data);
+      querySnapshot.forEach(doc => {
+        if (doc.data().uid === currentUser.uid) {
+          batch.update(doc.ref, {
+            Username: `${name} ${surname}`,
+            userImg: photo || user.photo
+          });
+        }
+      });
+
+      batch.commit();
+    }
+    updateBlog()
+
+
+    await setEditForm(false);
   }
+
 
   return (
     <motion.form
@@ -34,6 +66,7 @@ export default function Form({ setEditForm, photo, user }) {
       transition={{ duration: 0.45, ease: 'easeOut' }}
       className="flex flex-col w-4/6 lg:w-3/6"
     >
+
       <div className="lg:flex lg:flex-row lg:justify-between lg:gap-6">
         <div className="lg:flex lg:flex-col lg:w-1/2">
           <h2 className="text-left text-[#4699C2] font-bold py-2">Name: </h2>
@@ -102,6 +135,17 @@ export default function Form({ setEditForm, photo, user }) {
     </motion.form>
   );
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 

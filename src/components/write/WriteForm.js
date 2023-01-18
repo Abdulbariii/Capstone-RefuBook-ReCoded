@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { useSelector } from 'react-redux';
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { motion } from 'framer-motion';
 
@@ -11,7 +12,9 @@ function WriteForm({ setBlogPending, setBlogPosted }) {
   const [description, setDescription] = useState('');
   const [blog, setBlog] = useState('');
   const [selectedFile, setSelectedFile] = useState();
-
+  const userInfo = useSelector((state) => state.user);
+  console.log("infooooo")
+  console.log(userInfo)
   // const imageList = ref(storage, `${title}/`);
   const [user] = useAuthState(auth);
   console.log(user);
@@ -52,8 +55,8 @@ function WriteForm({ setBlogPending, setBlogPosted }) {
           title,
           description,
           blog,
-          user && user.displayName,
-          user && user.photoURL,
+          user && `${userInfo.name} ${userInfo.surname}`,
+          user && userInfo.photo,
           user && user.uid
         );
         setBlogPosted(true);

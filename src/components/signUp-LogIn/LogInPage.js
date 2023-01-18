@@ -16,6 +16,7 @@ function LogInPage() {
         try {
             const result = await signInWithPopup(auth, googleProvider);
             const isNewuser = getAdditionalUserInfo(result).isNewUser;
+            navigate('/');
             if (isNewuser) {
 
                 await setDoc(doc(db, "users", result.user.uid), {
@@ -26,7 +27,7 @@ function LogInPage() {
                     photo: result.user.photoURL
                 });
             }
-            navigate('/');
+
         } catch (error) {
             console.log(error);
         }
@@ -41,6 +42,7 @@ function LogInPage() {
             const photoUrl = `${result.user.photoURL}?height=500&access_token=${token}`;
             await updateProfile(auth.currentUser, { photoURL: photoUrl });
             const isNewuser = getAdditionalUserInfo(result).isNewUser;
+            navigate('/');
             if (isNewuser) {
 
                 await setDoc(doc(db, "users", result.user.uid), {
@@ -51,7 +53,7 @@ function LogInPage() {
                     photo: result.user.photoURL
                 });
             }
-            navigate('/');
+
             console.log(result.user.uid)
         } catch (error) {
             console.log(error);
