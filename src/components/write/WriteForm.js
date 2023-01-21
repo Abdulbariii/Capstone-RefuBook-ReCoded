@@ -86,6 +86,7 @@ function WriteForm({ setBlogPending, setBlogPosted }) {
           </h2>
           <div className="border border-gray-300 rounded-md">
             <input
+              data-testid='my-input'
               type="text"
               required
               value={title}

@@ -12,8 +12,8 @@ export default function Navbar() {
   const [user] = useAuthState(auth);
   const userInfo = useSelector((state) => state.user);
   return (
-    <section className="z-[100px] ">
-      <div className="lg:hidden absolute top-0 right-0 left-0 flex  items-center cursor-pointer px-8 pt-8">
+    <section className="z-[100px]" data-testid='navbar'>
+      < div className="lg:hidden absolute top-0 right-0 left-0 flex  items-center cursor-pointer px-8 pt-8" >
         <svg
           className="cursor-pointer "
           onClick={() => {
@@ -32,14 +32,13 @@ export default function Navbar() {
             fill="#4699C2"
           />
         </svg>
-      </div>
+      </div >
 
       <div
-        className={`${
-          burgerStatus
-            ? 'lg:transform-none translate-x-0'
-            : 'lg:transform-none -translate-x-full '
-        } lg:w-auto w-[60%] lg:absolute lg:bottom-auto lg:right-0  transition-all duration-300 fixed  z-[200] top-0 left-0 bottom-0 lg:flex lg:justify-between lg:items-center lg:rounded-none rounded-3xl lg:bg-transparent bg-white  font-sans lg:py-8 lg:px-24  p-6`}
+        className={`${burgerStatus
+          ? 'lg:transform-none translate-x-0'
+          : 'lg:transform-none -translate-x-full '
+          } lg:w-auto w-[60%] lg:absolute lg:bottom-auto lg:right-0  transition-all duration-300 fixed  z-[200] top-0 left-0 bottom-0 lg:flex lg:justify-between lg:items-center lg:rounded-none rounded-3xl lg:bg-transparent bg-white  font-sans lg:py-8 lg:px-24  p-6`}
       >
         <div className="text-[#026FC2] lg:flex items-center justify-center hidden">
           <Logo />
@@ -196,6 +195,6 @@ export default function Navbar() {
           </div>{' '}
         </div>
       </div>
-    </section>
+    </section >
   );
 }
