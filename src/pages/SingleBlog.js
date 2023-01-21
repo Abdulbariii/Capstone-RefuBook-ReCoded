@@ -6,7 +6,7 @@ export default function SingleBlog() {
   const [blogLoading, setBlogLoading] = useState(false);
 
   return (
-    <div className="min-h-screen flex justify-center items-start py-32 px-20">
+    <div className="min-h-screen  flex justify-center items-start py-32 px-2 lg:px-20">
       <div className="absolute left-2/4 top-2/4 translate-x-[-50%] translate-y-[-50%] ">
         <TailSpin
           height="120"

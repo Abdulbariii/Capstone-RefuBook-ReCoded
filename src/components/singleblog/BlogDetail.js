@@ -40,7 +40,7 @@ export default function BlogDetail({ setBlogLoading, blogLoading }) {
   console.log(blogsPost);
 
   return (
-    <div className="flex lg:w-full flex-wrap lg:flex-nowrap pl-0 lg:h-full justify-around lg:pl-72  items-start">
+    <div className="flex  w-full flex-wrap lg:flex-nowrap pl-0 lg:h-full justify-around lg:pl-72  items-start">
       {blogsPost && (
         <motion.div
           initial={{ opacity: 0, translateX: -160 }}
@@ -52,10 +52,10 @@ export default function BlogDetail({ setBlogLoading, blogLoading }) {
             {blogsPost.Title}
           </h1>
 
-          <div className="h-[440px] w-full relative">
+          <div className="h-fit w-full relative">
             <img
               alt="blog-img"
-              className="w-full shadow-lg  h-full object-cover "
+              className="w-full shadow-lg  h-full object-contain "
               src={blogsPost.Image}
             />
             <div className="flex flex-col gap-12 absolute right-2 bottom-2">

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getDocs, collection, query, where } from 'firebase/firestore';
 import { db, auth } from '../../firebase';
@@ -10,6 +11,7 @@ export default function ProfilePosts() {
   const [blogsPost, setBlogsPost] = useState([]);
 
   const [currentUser] = useAuthState(auth);
+  const userInfo = useSelector((state) => state.user);
 
   useEffect(() => {
     const getBlogs = async () => {
@@ -36,7 +38,7 @@ export default function ProfilePosts() {
       setBlogsPost(blogsFetched);
     };
     getBlogs();
-  }, [currentUser]);
+  }, [currentUser, userInfo]);
 
   const [next, setNext] = useState(6);
   const [prev, setPrev] = useState(0);

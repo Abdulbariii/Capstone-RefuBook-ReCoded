@@ -7,6 +7,7 @@ import SwiperCore, {
 } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
 import 'swiper/swiper-bundle.min.css';
 import 'swiper/swiper.min.css';
 import { onSnapshot, collection, orderBy, query } from 'firebase/firestore';
@@ -16,10 +17,12 @@ import truncate from '../utility/TruncateText';
 SwiperCore.use([EffectCoverflow, Pagination]);
 
 export default function Blogs() {
+  const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState([]);
   const [searchValue, setSearchValue] = useState('');
   const [sortBy, setSortBy] = useState('Newest');
   useEffect(() => {
+    setLoading(true);
     const blogsRef = collection(db, 'blogs');
     const querySnapshot = query(
       blogsRef,
@@ -30,7 +33,9 @@ export default function Blogs() {
         id: doc.id,
         ...doc.data(),
       }));
+
       setBlogs(data);
+      setLoading(false);
     });
     return () => unsubscribe();
   }, [sortBy]);
@@ -48,7 +53,21 @@ export default function Blogs() {
   const randomBlogs = shuffledBlogs.slice(0, 7);
 
   return (
-    <div className="bg-white w-full h-full lg:pt-36 lg:pb-16 lg:px-48  py-16">
+    <div className="bg-white w-full min-h-screen lg:pt-36 lg:pb-16 lg:px-48  py-16">
+      <div className="absolute left-2/4 top-2/4 translate-x-[-50%] translate-y-[-50%] ">
+        <TailSpin
+          height="120"
+          width="120"
+          color="#4699C2"
+          ariaLabel="tail-spin-loading"
+          radius="1"
+          wrapperStyle={{}}
+          wrapperClass=""
+          visible={loading ? true : null}
+        />
+        {loading && <p className="text-2xl text-[#4699C2] pt-4">Loading</p>}
+      </div>
+
       <div className="flex justify-end items-center gap-9 lg:mb-0 mb-6 pr-1 ">
         <div className="text-[#4F4F4F] text-[14px]">
           <span>Sort By: </span>
