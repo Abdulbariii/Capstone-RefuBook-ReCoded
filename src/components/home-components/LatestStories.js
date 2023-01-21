@@ -1,31 +1,33 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { getDocs, collection, query, where } from 'firebase/firestore';
 
-import StoryImg1 from '../../assets/images/girl.jpg';
-import StoryImg2 from '../../assets/images/Allia.jpg';
+import { db, auth } from '../../firebase';
+import DescriptionImage1 from '../../assets/images/girl.jpg';
+import DescriptionImage2 from '../../assets/images/Allia.jpg';
 
 function LatestStories() {
-  const latestStories = [
-    {
-      id: 1,
-      language: 'Language',
-      story:
-        "When we arrived, I was overwhelmed, everything was different. I couldn't speak any English and the culture was so different.",
-      img: StoryImg1,
-      author: 'Sara Booker',
-      authorInfo: 'Refugee in Turkey',
-      authorAvator: StoryImg1,
-    },
-    {
-      id: 2,
-      language: 'Language',
-      story:
-        'The last thing I remember of Syria, before we left, was when my mother was taking me from our place to our grandparents',
-      img: StoryImg2,
-      author: 'Alia Mohammed',
-      authorInfo: 'Refugee in Lebnon',
-      authorAvator: StoryImg2,
-    },
-  ];
+  const [latestStories, setLatestStories] = useState();
+
+  useEffect(() => {
+    const getBlogs = async () => {
+      const q = query(collection(db, 'blogs'));
+
+      const querySnapshot = await getDocs(q);
+
+      const blogsFetched = [];
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+
+        blogsFetched.push(doc.data());
+      });
+
+      setLatestStories(blogsFetched.slice(0, 2));
+    };
+    getBlogs();
+  }, []);
 
   return (
     <section className="bg-[#4699C2] lg:px-40 px-14  py-10">
@@ -39,17 +41,16 @@ function LatestStories() {
         </p>
       </div>
 
-      {latestStories
-        .slice(0, 2)
-        .map(
-          ({ id, language, story, img, author, authorInfo, authorAvator }) => (
+      {latestStories &&
+        latestStories.map((stories) => (
+          <Link to={`/singleblog/${stories.blogId}`}>
             <div
-              key={id}
+              key={stories.blogId}
               className="flex lg:flex-row flex-col lg:gap-20 lg:justify-between lg:py-10  py-6 lg:items-stretch items-center"
             >
               <div className="lg:w-[30.52rem] lg:h-[18.958rem] w-[15.823rem] h-[8.938rem] bg-neutral-900  rounded-sm mb-4">
                 <img
-                  src={img}
+                  src={stories.Image}
                   alt=""
                   className="w-full h-full object-cover rounded-sm "
                 />
@@ -58,31 +59,28 @@ function LatestStories() {
               <div className="lg:w-[25.189rem] w-[15.823rem] text-left flex flex-col gap-5">
                 <div>
                   <span className="bg-[#FEDB9B] py-2 px-4 font-sans font-bold text-[10px] text-[#4699C2] rounded-sm">
-                    {language}
+                    language
                   </span>
                 </div>
                 <p className="text-left lg:w-[25.19rem] w-[14.438rem]  font-sans font-light lg:text-3xl text-lg tracking-[-0.1px] text-white">
-                  {story}
+                  {stories.Description}
                 </p>
                 <div className="flex gap-3 pt-2">
                   <img
-                    src={authorAvator}
+                    src={stories.userImg}
                     alt=""
                     className=" object-cover lg:w-[2.199rem] lg:h-[2.167rem] w-[1.875rem] h-[1.75rem] bg-[#FEDB9B] rounded-full mt-1"
                   />
                   <div>
                     <p className="font-sans font-bold text-sm lg:tracking-[-0.32px] tracking-[-0.1px] text-white">
-                      {author}
-                    </p>
-                    <p className="text-[#E9E9E9] font-light text-xs tracking-[-0.27px]">
-                      {authorInfo}
+                      {stories.Username}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-          )
-        )}
+          </Link>
+        ))}
     </section>
   );
 }
