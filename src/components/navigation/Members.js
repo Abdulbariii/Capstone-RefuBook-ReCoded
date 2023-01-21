@@ -1,6 +1,7 @@
 import React from 'react';
 import AbdulbariImg from '../../assets/images/AbdulbariImage.jpg';
 import WafaImg from '../../assets/images/Wafaa_Alhayek_Palestine_2022.jpeg';
+import Shahla from '../../assets/images/shahla.jpg'
 
 export default function Members() {
   const members = [
@@ -11,11 +12,11 @@ export default function Members() {
       image: AbdulbariImg,
     },
     {
-      name: 'Emily Jorgensen',
-      location: 'Author at Panoply Store',
-      desc: '',
+      name: 'Shahla Kamal',
+      location: 'KRI / Iraq',
+      desc: 'Front End Developer',
       image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDe-uOj0YtwteyEVNQtNRw3sCn_EWJuMeGYbPzbVGoAb5Euz6Fh_krKHNp5PSknTIEMfg&usqp=CAU',
+        Shahla,
     },
     {
       name: 'Emily Jorgensen',
