@@ -15,7 +15,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateUser } from '../../features/userSlice';
 import { auth, db } from '../../firebase';
 
-export default function Form({ setEditForm, photo }) {
+export default function Form({ setEditForm, photo, imageUrl }) {
   const user = useSelector((state) => state.user);
   const [currentUser] = useAuthState(auth);
   const [name, setName] = useState(user.name);
@@ -32,7 +32,7 @@ export default function Form({ setEditForm, photo }) {
       surname,
       biography,
       location,
-      photo: photo || user.photo,
+      photo: imageUrl && imageUrl,
     });
     dispatch(
       updateUser({
@@ -40,7 +40,7 @@ export default function Form({ setEditForm, photo }) {
         surname,
         biography,
         location,
-        photo: photo || user.photo,
+        photo: imageUrl && imageUrl,
       })
     );
 
@@ -53,7 +53,7 @@ export default function Form({ setEditForm, photo }) {
         if (doc.data().uid === currentUser.uid) {
           batch.update(doc.ref, {
             Username: `${name} ${surname}`,
-            userImg: photo || user.photo,
+            userImg: photo || imageUrl,
           });
         }
       });
@@ -67,7 +67,7 @@ export default function Form({ setEditForm, photo }) {
 
   return (
     <motion.form
-      data-testid='form'
+      data-testid="form"
       onSubmit={updateProfile}
       initial={{ opacity: 0, scale: 0.5 }}
       animate={{ opacity: 1, scale: 1 }}

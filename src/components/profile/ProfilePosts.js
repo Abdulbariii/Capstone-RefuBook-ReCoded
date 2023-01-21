@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -7,7 +8,7 @@ import { getDocs, collection, query, where } from 'firebase/firestore';
 import { db, auth } from '../../firebase';
 import truncate from '../../utility/TruncateText';
 
-export default function ProfilePosts() {
+export default function ProfilePosts({ imageUrl }) {
   const [blogsPost, setBlogsPost] = useState([]);
 
   const [currentUser] = useAuthState(auth);
@@ -38,7 +39,7 @@ export default function ProfilePosts() {
       setBlogsPost(blogsFetched);
     };
     getBlogs();
-  }, [currentUser, userInfo]);
+  }, [currentUser, imageUrl]);
 
   const [next, setNext] = useState(6);
   const [prev, setPrev] = useState(0);

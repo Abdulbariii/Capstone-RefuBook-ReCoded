@@ -12,6 +12,8 @@ export default function Profile() {
   const navigate = useNavigate();
   const [editForm, setEditForm] = useState();
   const [photo, setPhoto] = useState(null);
+  const [imageUrl, setImageUrl] = useState(null);
+
   const user = useSelector((state) => state.user);
   console.log('profile');
   console.log(user);
@@ -23,6 +25,8 @@ export default function Profile() {
       <div className=" min-h-screen flex justify-start gap-24 py-20 flex-col items-center relative">
         <div className="fixed z-[-10]  lg:top-0 left-0 bottom-0 lg:right-auto right-0 lg:w-[50%] w-full lg:h-full h-[40%] bg-[#e5faff]  rounded-t-[50%]  lg:rounded-l-[24px]  lg:rounded-r-full  " />
         <UserImage
+          imageUrl={imageUrl}
+          setImageUrl={setImageUrl}
           choosePhoto={setPhoto}
           userImg={currentUser && user.photo}
           displayName={currentUser && `${user.name} ${user.surname}`}
@@ -30,9 +34,14 @@ export default function Profile() {
           setEditForm={setEditForm}
         />
         {editForm ? (
-          <Form setEditForm={setEditForm} photo={photo} user={user} />
+          <Form
+            imageUrl={imageUrl}
+            setEditForm={setEditForm}
+            photo={photo}
+            user={user}
+          />
         ) : (
-          <ProfilePosts />
+          <ProfilePosts imageUrl={imageUrl} />
         )}
       </div>
     );

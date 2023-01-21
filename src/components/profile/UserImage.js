@@ -11,9 +11,10 @@ export default function UserImage({
   displayName,
   userImg,
   choosePhoto,
+  imageUrl,
+  setImageUrl,
 }) {
   const [photo, setPhoto] = useState(null);
-  const [imageUrl, setImageUrl] = useState(null);
 
   useEffect(() => {
     const uploadFile = () => {
