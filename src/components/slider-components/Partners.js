@@ -37,7 +37,6 @@ function Partners({
         >
           Our Partners
         </div>
-        {/* <div className={`font-["Fira Sans"] font-medium text-2xl pb-10 text-center`}>Our Partners</div> */}
 
         <Swiper
           slidesPerView={1}
@@ -60,7 +59,7 @@ function Partners({
         >
           <div className="">
             {images.map((img) => (
-              <SwiperSlide className="flex justify-center items-center h-36">
+              <SwiperSlide key={img} className="flex justify-center items-center h-36">
                 <img
                   src={img}
                   alt="logo"

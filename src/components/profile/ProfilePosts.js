@@ -10,7 +10,6 @@ import truncate from '../../utility/TruncateText';
 
 export default function ProfilePosts({ imageUrl }) {
   const [blogsPost, setBlogsPost] = useState([]);
-
   const [currentUser] = useAuthState(auth);
   const userInfo = useSelector((state) => state.user);
 
@@ -52,7 +51,7 @@ export default function ProfilePosts({ imageUrl }) {
     >
       {blogsPost &&
         blogsPost.slice(prev, next).map((post) => (
-          <Link to={`/singleblog/${post.blogId}`}>
+          <Link key={post.blogId} to={`/singleblog/${post.blogId}`}>
             <div className="  hover:bg-[#4699c227] w-64  hover:scale-110 transition-all h-fit p-5 cursor-pointer rounded-2xl shadow-xl bg-white flex flex-col justify-around items-start">
               <h1 className="text-2xl font-medium">{post.Title}</h1>
 
@@ -77,9 +76,8 @@ export default function ProfilePosts({ imageUrl }) {
               setNext(6);
               setPrev(0);
             }}
-            className={` ${
-              prev === 0 ? 'bg-opacity-100' : 'bg-opacity-20'
-            } bg-[#4699C2] h-5 w-5 rounded-full`}
+            className={` ${prev === 0 ? 'bg-opacity-100' : 'bg-opacity-20'
+              } bg-[#4699C2] h-5 w-5 rounded-full`}
           >
             .
           </button>
@@ -89,9 +87,8 @@ export default function ProfilePosts({ imageUrl }) {
               setNext(blogsPost.length <= 12 ? blogsPost.length : 6);
               setPrev(7);
             }}
-            className={` ${
-              next === 6 ? 'bg-opacity-20' : 'bg-opacity-100'
-            } bg-[#4699C2] h-5 w-5 rounded-full`}
+            className={` ${next === 6 ? 'bg-opacity-20' : 'bg-opacity-100'
+              } bg-[#4699C2] h-5 w-5 rounded-full`}
           >
             .
           </button>

@@ -122,7 +122,7 @@ export default function Blogs() {
           <Swiper
             breakpoints={{
               0: {
-                slidesPerView: 1.5,
+                slidesPerView: 1.3,
                 spaceBetween: 30,
               },
               750: {
@@ -190,7 +190,7 @@ export default function Blogs() {
       >
         {showedBlogs.map((blog) => {
           return (
-            <Link to={`/singleblog/${blog.blogId}`}>
+            <Link key={blog.id} to={`/singleblog/${blog.blogId}`}>
               <div className=" lg:w-48 w-44 group hover:scale-105 bg-[#ffffff] h-fit hover:bg-[#4699c227] rounded-lg transition-all shadow-lg lg:m-4 m-1 ">
                 <div className="lg:w-48 w-44 h-[104.9px] ">
                   {' '}

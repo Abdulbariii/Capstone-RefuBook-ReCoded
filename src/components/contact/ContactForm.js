@@ -45,9 +45,8 @@ export default function ContactForm() {
         <h1 className="text-[#4699C2] font-bold lg:text-[64px] text-3xl mb-2 tracking-[-0.1px]">
           Get in Touch
         </h1>
-        <p className="text-[16px] text-[#8B8F9C] w-[362px] lg:text-start text-center font-normal">
-          But Brooke Chaffin and Catherine Connors are looking to change that
-          with the introduction.
+        <p className="text-[16px] text-[#8B8F9C] lg:w-[390px] w-[362px]  lg:text-start text-center font-normal">
+          Reach out to us and together we can make a difference in the lives of refugees.
         </p>
 
         <form

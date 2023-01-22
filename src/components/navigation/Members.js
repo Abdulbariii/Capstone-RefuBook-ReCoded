@@ -6,12 +6,14 @@ import Shahla from '../../assets/images/shahla.jpg'
 export default function Members() {
   const members = [
     {
+      id: 1,
       name: 'Abdulbari Qaisar',
       location: 'KRI / Iraq',
       desc: 'Software Engineer',
       image: AbdulbariImg,
     },
     {
+      id: 2,
       name: 'Shahla Kamal',
       location: 'KRI / Iraq',
       desc: 'Front End Developer',
@@ -19,6 +21,7 @@ export default function Members() {
         Shahla,
     },
     {
+      id: 3,
       name: 'Emily Jorgensen',
       location: 'Author at Panoply Store',
       desc: 'Software Engineer',
@@ -26,6 +29,7 @@ export default function Members() {
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDe-uOj0YtwteyEVNQtNRw3sCn_EWJuMeGYbPzbVGoAb5Euz6Fh_krKHNp5PSknTIEMfg&usqp=CAU',
     },
     {
+      id: 4,
       name: 'Wafaa AlHayek',
       location: 'Palestine',
       desc: 'Software Engineer',
@@ -35,7 +39,7 @@ export default function Members() {
   return (
     <div className="flex flex-row flex-wrap justify-center px-16 lg:mb-10">
       {members.map((member) => (
-        <div className="flex flex-col justify-start items-start flex-nowrap text-[#4699C2] p-8 lg:p-14">
+        <div key={member.id} className="flex flex-col justify-start items-start flex-nowrap text-[#4699C2] p-8 lg:p-14">
           <img
             className="h-44 mb-3 w-44 rounded-full border-2 border-sky-600 object-cover"
             alt="member"
