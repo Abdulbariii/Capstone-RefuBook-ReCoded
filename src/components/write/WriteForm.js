@@ -15,11 +15,9 @@ function WriteForm({ setBlogPending, setBlogPosted }) {
   const [blog, setBlog] = useState('');
   const [selectedFile, setSelectedFile] = useState();
   const userInfo = useSelector((state) => state.user);
-  console.log('infooooo');
-  console.log(userInfo);
+
   // const imageList = ref(storage, `${title}/`);
   const [user] = useAuthState(auth);
-  console.log(user);
   const addData = async (
     img,
     blogTitle,
@@ -91,7 +89,7 @@ function WriteForm({ setBlogPending, setBlogPosted }) {
               required
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full py-2 opacity-50 focus:opacity-100"
+              className="w-full py-2 opacity-50 focus:opacity-100 p-2"
             />
           </div>
         </div>
@@ -106,7 +104,7 @@ function WriteForm({ setBlogPending, setBlogPosted }) {
               required
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="opacity-50 focus:opacity-100 w-full py-2"
+              className="opacity-50 focus:opacity-100 w-full py-2 p-2"
             />
           </div>
         </div>
@@ -118,7 +116,7 @@ function WriteForm({ setBlogPending, setBlogPosted }) {
           required
           value={blog}
           onChange={(e) => setBlog(e.target.value)}
-          className="opacity-50 focus:opacity-100 w-full py-4"
+          className="opacity-50 focus:opacity-100 w-full py-4 px-2"
         >
           blog
         </textarea>

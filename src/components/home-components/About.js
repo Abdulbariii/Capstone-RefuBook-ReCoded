@@ -9,7 +9,10 @@ function About() {
                 <p className='text-[1.75rem] text-center font-medium text-[#4699C2] '>About</p>
             </div>
             <div>
-                <p className='text-sm font-normal text-[#3F3B3B] lg:w-[39.835rem] w-[23.563rem] px-4' >In quo quaerimus, non emolumento aliquo, sed ipsius honestatis decore laudandis, id est et quas molestias excepturi sint, obcaecati cupiditate non numquam eius modi tempora incidunt, ut earum rerum hic tenetur a natura ipsa natura incorrupte atque integre iudicante itaque aiunt hanc quasi involuta aperiri.</p>
+                <p className='text-sm font-normal text-[#3F3B3B] lg:w-[39.835rem] w-[23.563rem] px-4' >
+                    Our website is a platform for the voices of refugees to be heard and a space for meaningful dialogue and understanding. By sharing the stories and experiences of refugees, we aim to break down stereotypes and build empathy and support for those who have been forced to flee their homes.
+
+                </p>
             </div>
 
             <div>

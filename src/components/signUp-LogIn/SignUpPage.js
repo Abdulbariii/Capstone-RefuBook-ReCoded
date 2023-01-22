@@ -63,8 +63,8 @@ function SignUpPage() {
     }
   };
   return (
-    <section className="flex flex-col">
-      <div className="absolute  lg:top-0 left-0 bottom-0 lg:right-auto right-0 lg:w-[50%] w-full lg:h-full h-[40%] bg-[#e5faff]  rounded-t-[50%]  lg:rounded-l-[24px]  lg:rounded-r-full  " />
+    <section className="flex flex-col min-h-screen">
+      <div className="fixed z-[-10]  lg:top-0 left-0 bottom-0 lg:right-auto right-0 lg:w-[50%] w-full lg:h-full h-[40%] bg-[#e5faff]  rounded-t-[50%]  lg:rounded-l-[24px]  lg:rounded-r-full  " />
       <div className="z-20 lg:m-auto lg:p-9 lg:mt-48 mt-24 mx-10 p-16 flex flex-col justify-between items-center lg:gap-6 text-center bg-white shadow-[2px_4px_8px_rgba(0,0,0,0.3)] rounded-3xl ">
         <p className="text-[#4699C2] font-sans font-bold lg:text-2xl text-lg text-center">
           SIGN UP WITH
@@ -105,7 +105,6 @@ function SignUpPage() {
         </div>
       </div>{' '}
     </section>
-    // </section>
   );
 }
 

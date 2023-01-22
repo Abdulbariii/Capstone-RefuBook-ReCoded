@@ -9,12 +9,10 @@ export default function Story() {
         </h1>
       </div>
       <div className="mx-16 md:mx-72  mb-16">
-        <p className="text-xl">
-          It is a long established fact that a reader will be distracted by the
-          readable content of a page when looking at its layout. The point of
-          using Lorem Ipsum is that it has a more-or-less normal distribution of
-          letters, as opposed to using Content here, content here, making it
-          look like readable English.
+        <p className="text-lg ">
+          We are a team of dedicated individuals who came together with a shared belief that all human beings deserve safety, dignity and the opportunity to build a better life for themselves and their families. We saw the devastating
+          effects of war, persecution and displacement on innocent lives and knew that something had to be done
+
         </p>
       </div>
     </div>
