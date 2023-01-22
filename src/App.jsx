@@ -1,5 +1,7 @@
+/* eslint-disable import/order */
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-shadow */
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -23,6 +25,8 @@ import Chat from './components/chat/Chat';
 
 import './App.css';
 import Navbar from './components/navigation/Navbar';
+import i18n from './i18n';
+import { useTranslation } from 'react-i18next';
 
 function App() {
   const dispatch = useDispatch();
@@ -49,8 +53,11 @@ function App() {
     getUser();
   }, [currentUser, dispatch]);
 
+  const [direction, setDirection] = useState('ltr');
+  document.documentElement.dir = direction;
+
   return (
-    <div className="App font-roboto">
+    <div className="App font-roboto ">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -65,7 +72,7 @@ function App() {
         <Route path="/community" element={<Community />} />
       </Routes>
       <Chat />
-      <Footer />
+      <Footer setDirection={setDirection} />
     </div>
   );
 }
