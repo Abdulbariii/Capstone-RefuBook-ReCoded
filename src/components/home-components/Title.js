@@ -15,12 +15,12 @@ function Title() {
           {t('refubook')}
         </p>
         <p className="font-sans font-medium lg:text-6xl text-2xl leading-[65px] text-[#FC8476] w-[15.25rem]  lg:m-0 m-auto ">
-          Rebuilding Futures
+          {t(`Rebuilding Futures`)}
         </p>
         <p className="font-sans lg:text-base text-sm  font-light tracking-normal lg:leading-5 leading-4 lg:w-[22.625rem] w-[16.265rem] ">
-          Refugees flee war and persecution, seeking safety and a new home.
-          Millions struggle daily, but hope persists in their resilience and the
-          support of those who help.
+          {t(
+            'Refugees flee war and persecution, seeking safety and a new home. Millions struggle daily, but hope persists in their resilience and thesupport of those who help.'
+          )}
         </p>
         <div>
           <NavLink to="/signup">
@@ -28,7 +28,7 @@ function Title() {
               type="button"
               className="px-11 py-1.5   mt-5 bg-[#4699C2] text-white font-bold lg:text-lg text-base rounded-[50px] shadow-md hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
             >
-              Sign up
+              {t('signup')}
             </button>
           </NavLink>
         </div>
