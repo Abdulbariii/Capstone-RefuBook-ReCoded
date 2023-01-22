@@ -12,6 +12,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import Community from './pages/Community';
 import Profile from './pages/Profile';
 import SingleBlog from './pages/SingleBlog';
 
@@ -49,7 +50,7 @@ function App() {
   }, [currentUser, dispatch]);
 
   return (
-    <div className="App">
+    <div className="App font-roboto">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -61,6 +62,7 @@ function App() {
         <Route path="/profile" element={<Profile />} />
         <Route path="/write" element={<Write />} />
         <Route path="/singleblog/:id" element={<SingleBlog />} />
+        <Route path="/community" element={<Community />} />
       </Routes>
       <Chat />
       <Footer />

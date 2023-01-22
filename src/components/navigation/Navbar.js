@@ -144,6 +144,20 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   isActive ? `  font-bold text-[#4699C2] ` : ` `
                 }
+                to="/community"
+              >
+                Community
+              </NavLink>
+            )}
+
+            {user && (
+              <NavLink
+                onClick={() => {
+                  setBurgerStatus(false);
+                }}
+                className={({ isActive }) =>
+                  isActive ? `  font-bold text-[#4699C2] ` : ` `
+                }
                 to="/profile"
               >
                 Profile
