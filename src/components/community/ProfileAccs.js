@@ -53,17 +53,18 @@ export default function ProfileAccs() {
   console.log(accs);
 
   return (
-    <div className="w-full h-full flex flex-wrap justify-start items-start gap-16 ">
-      {accs.map((acc) => (
-        <div className="w-60 h-64 p-5  bg-[#fff] shadow-xl flex-col rounded-xl  flex justify-center items-center gap-6">
-          <img
-            className="w-40 h-40 rounded-full object-cover"
-            alt="user"
-            src={acc.photo}
-          />
-          <h1 className="text-2xl ">{acc.name}</h1>
-        </div>
-      ))}
+    <div className="w-full h-full flex flex-wrap justify-center lg:justify-start items-center lg:items-start gap-16 ">
+      {accs &&
+        accs.map((acc) => (
+          <div className="w-60 h-64 p-5  bg-[#fff] shadow-xl flex-col rounded-xl  flex justify-center items-center gap-6">
+            <img
+              className="w-40 h-40 rounded-full object-cover"
+              alt="user"
+              src={acc.photo}
+            />
+            <h1 className="text-2xl ">{acc.name}</h1>
+          </div>
+        ))}
     </div>
   );
 }
