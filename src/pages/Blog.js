@@ -146,7 +146,7 @@ export default function Blogs() {
                         <img
                           src={blog.Image}
                           alt="blog pic"
-                          className=" rounded-t-lg w-full h-full object-cover"
+                          className="  rounded-t-lg w-full h-full object-cover"
                         />
                       </div>
                       <div className="  bg-transparent rounded-lg  transition-all ">
@@ -161,7 +161,7 @@ export default function Blogs() {
                             <div className="w-10 h-10 rounded-full ">
                               {' '}
                               <img
-                                className="rounded-full w-full h-full"
+                                className="rounded-full object-cover w-full h-full"
                                 src={blog.userImg}
                                 alt="Avatar"
                               />
@@ -197,7 +197,7 @@ export default function Blogs() {
                   <img
                     src={blog.Image}
                     alt="blog pic"
-                    className=" rounded-t-lg w-full h-full object-cover "
+                    className=" rounded-t-lg  w-full h-full object-cover "
                   />
                 </div>
                 <div className="bg-transparent  rounded-lg ">
@@ -212,7 +212,7 @@ export default function Blogs() {
                       <div className="w-8 h-8 rounded-full ">
                         {' '}
                         <img
-                          className="rounded-full w-full h-full"
+                          className="rounded-full object-cover w-full h-full"
                           src={blog.userImg}
                           alt="Avatar"
                         />

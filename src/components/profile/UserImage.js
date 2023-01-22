@@ -47,13 +47,13 @@ export default function UserImage({
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setImageUrl(downloadURL);
+            console.log(imageUrl);
           });
         }
       );
     };
     if (photo) {
       uploadFile();
-      setImageUrl(URL.createObjectURL(photo));
     }
   }, [photo]);
 
@@ -61,7 +61,7 @@ export default function UserImage({
     <div className="flex mb-10 lg:mb-0 mt-10 justify-center items-center flex-col ">
       <div className="relative ">
         <img
-          className="w-[160px] h-[160px] rounded-full relative"
+          className="w-[160px] object-cover h-[160px] rounded-full relative"
           alt=""
           src={photo ? imageUrl : userImg}
           onLoad={async () => {

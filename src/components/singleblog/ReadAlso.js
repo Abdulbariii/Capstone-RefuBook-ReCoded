@@ -60,7 +60,7 @@ export default function ReadAlso({ uidBlog, id, blogLoading }) {
 
                 <div className="flex items-center">
                   <img
-                    className="w-10 h-10 rounded-full mr-4"
+                    className="w-10 h-10 object-cover rounded-full mr-4"
                     src={blog.userImg}
                     alt="Avatar"
                   />
