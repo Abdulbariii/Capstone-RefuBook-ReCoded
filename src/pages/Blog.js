@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import SwiperCore, {
   EffectCoverflow,
   Pagination,
@@ -17,6 +18,7 @@ import truncate from '../utility/TruncateText';
 SwiperCore.use([EffectCoverflow, Pagination]);
 
 export default function Blogs() {
+  const { t } = useTranslation('common');
   const [loading, setLoading] = useState(false);
   const [blogs, setBlogs] = useState([]);
   const [searchValue, setSearchValue] = useState('');
@@ -65,21 +67,21 @@ export default function Blogs() {
           wrapperClass=""
           visible={loading ? true : null}
         />
-        {loading && <p className="text-2xl text-[#4699C2] pt-4">Loading</p>}
+        {loading && <p className="text-2xl text-[#4699C2] pt-4">{t('Loading')}</p>}
       </div>
 
       <div className="flex justify-end items-center gap-9 lg:mb-0 mb-6 pr-1 ">
         <div className="text-[#4F4F4F] text-[14px]">
-          <span>Sort By: </span>
+          <span>{t('SortBy')}</span>
           <select onChange={handleSort} className="bg-[#D6F8FF] rounded-sm">
-            <option>Newest</option>
-            <option>Oldest</option>
+            <option>{t('Newest')}</option>
+            <option>{t('Oldest')}</option>
           </select>
         </div>
 
         <div className="w-40 flex justify-end items-center relative ">
           <input
-            placeholder="Search..."
+            placeholder={t('Search')}
             onChange={handleSearch}
             className="rounded-3xl border-2 outline-0 pl-2 focus:py-1  "
             onKeyUp={(event) => {

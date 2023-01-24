@@ -18,9 +18,7 @@ function Title() {
           {t(`Rebuilding Futures`)}
         </p>
         <p className="font-sans lg:text-base text-sm  font-light tracking-normal lg:leading-5 leading-4 lg:w-[22.625rem] w-[16.265rem] ">
-          {t(
-            'Refugees flee war and persecution, seeking safety and a new home. Millions struggle daily, but hope persists in their resilience and thesupport of those who help.'
-          )}
+          {t('RefugeesFleeWar')}
         </p>
         <div>
           <NavLink to="/signup">

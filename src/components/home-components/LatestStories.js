@@ -1,5 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
+
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getDocs, collection, query, where } from 'firebase/firestore';
@@ -10,6 +12,7 @@ import DescriptionImage2 from '../../assets/images/Allia.jpg';
 
 function LatestStories() {
   const [latestStories, setLatestStories] = useState();
+  const { t } = useTranslation('common');
 
   useEffect(() => {
     const getBlogs = async () => {
@@ -33,10 +36,10 @@ function LatestStories() {
     <section className="bg-[#4699C2] lg:px-40 px-14  py-10">
       <div className="font-sans font-normal  text-white lg:text-left text-center ">
         <p className=" lg:text-[3.375rem]  text-[1.5rem] lg:tracking-[-1] tracking-[-0.3] mb-4">
-          Latest Stories
+          {t('LatestStories')}
         </p>
         <p className="lg:text-lg text-sm tracking-tighter lg:w-[26rem] w-[16.25rem] lg:m-0 m-auto pb-4 ">
-          Hear from those who have faced unimaginable challenges and emerged with resilience, courage and hope.
+        {t('LatestStoriesText')}
         </p>
       </div>
 
@@ -57,7 +60,7 @@ function LatestStories() {
               <div className="lg:w-[25.189rem] w-[15.823rem] text-left flex flex-col gap-5">
                 <div>
                   <span className="bg-[#FEDB9B] py-2 px-4 font-sans font-bold text-[10px] text-[#4699C2] rounded-sm">
-                    language
+                    {t('Language')}
                   </span>
                 </div>
                 <p className="text-left lg:w-[25.19rem] w-[14.438rem]  font-sans font-light lg:text-3xl text-lg tracking-[-0.1px] text-white">

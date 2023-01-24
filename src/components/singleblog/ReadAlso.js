@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
-
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { getDocs, collection, query, where } from 'firebase/firestore';
@@ -10,6 +10,7 @@ import truncate from '../../utility/TruncateText';
 
 export default function ReadAlso({ uidBlog, id, blogLoading }) {
   const [blogsPost, setBlogsPost] = useState([]);
+  const { t } = useTranslation('common');
 
   const [currentUser] = useAuthState(auth);
 
@@ -37,7 +38,7 @@ export default function ReadAlso({ uidBlog, id, blogLoading }) {
     <div className="mt-32 ">
       {!blogLoading && (
         <h1 className="text-lg font-bold text-start text-black">
-          Read also :{' '}
+          {t('ReadAlso')}{' '}
         </h1>
       )}
 

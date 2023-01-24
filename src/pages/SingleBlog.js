@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { TailSpin } from 'react-loader-spinner';
 import BlogDetail from '../components/singleblog/BlogDetail';
 
 export default function SingleBlog() {
+  const { t } = useTranslation('common');
   const [blogLoading, setBlogLoading] = useState(false);
 
   return (
@@ -18,7 +20,7 @@ export default function SingleBlog() {
           wrapperClass=""
           visible={blogLoading ? true : null}
         />
-        {blogLoading && <p className="text-2xl text-[#4699C2] pt-4">Loading</p>}
+        {blogLoading && <p className="text-2xl text-[#4699C2] pt-4">{t('Loading')}</p>}
       </div>
 
       <BlogDetail blogLoading={blogLoading} setBlogLoading={setBlogLoading} />

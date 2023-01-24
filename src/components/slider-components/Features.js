@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useTranslation } from 'react-i18next';
 import SwiperCore, { EffectCoverflow, Pagination, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
@@ -10,26 +11,29 @@ import { StarIcon, FeatureImage } from "../../assets/images/Image"
 SwiperCore.use([EffectCoverflow, Pagination]);
 
 function Features() {
+
+    const { t } = useTranslation('common');
+    
+
     const features = [
         {
-
-            featureTitle: "Reliability",
-            featureContent: "Dependable and consistent, we provide accurate information and resources for refugees.Trustworthy and responsible, we uphold ethical standards in our work."
+            featureTitle: t('Reliability'),
+            featureContent: t('ReliabilityText')
         },
         {
 
-            featureTitle: "Motivation",
-            featureContent: "We inspire action through sharing refugee stories and providing opportunities for involvement, igniting a passion for change."
+            featureTitle: t('Motivation'),
+            featureContent: t('MotivationText')
         },
         {
 
-            featureTitle: "Efficiency",
-            featureContent: "We strive for efficiency in all aspects of our work, making sure our website is easy to navigate, resources and services are easily accessible and our organization delivers its services effectively. "
+            featureTitle: t('Efficiency'),
+            featureContent: t('EfficiencyText')
         },
         {
 
-            featureTitle: "Creativity",
-            featureContent: "We use innovative and unique ways to present information, resources, and services to refugees.We also aim to find new solutions to the problems that refugees face."
+            featureTitle: t('Creativity'),
+            featureContent: t('CreativityText')
         }
 
     ]

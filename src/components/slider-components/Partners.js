@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { useTranslation } from 'react-i18next';
 import SwiperCore, { EffectCoverflow, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
@@ -8,12 +9,14 @@ import 'swiper/swiper.min.css';
 SwiperCore.use([EffectCoverflow, Pagination]);
 
 function Partners({
+  
   font,
   fontWeight,
   textSize,
   textColorScreen,
   textColorMobile,
 }) {
+  const { t } = useTranslation('common');
   const images = [
     'https://lh3.googleusercontent.com/U2loiuR3c4XvWNPyWVbsBcv2RZ6U3zkgiAbHJnda25EQPtrxzbK5beAntOa6xMywyH1nq4J-WvnLa1acadzDPK72M-rPSSm7wJb_Kw=w1200-l80-sg-rp',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/WHO_logo.svg/800px-WHO_logo.svg.png',
@@ -35,7 +38,7 @@ function Partners({
         <div
           className={`${font} ${fontWeight} ${textSize} ${textColorScreen} ${textColorMobile} pb-10 text-center`}
         >
-          Our Partners
+          {t('OurPartners')}
         </div>
 
         <Swiper

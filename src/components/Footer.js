@@ -14,19 +14,19 @@ export default function Footer({ setDirection }) {
         <Logo />
         <div className="home text-sky-700">
           {' '}
-          <Link to="/">Home</Link>
+          <Link to="/">{t('Home')}</Link>
         </div>
         <div className="home text-sky-700">
           {' '}
-          <Link to="about">About</Link>
+          <Link to="about">{t('about')}</Link>
         </div>
         <div className="home text-sky-700">
           {' '}
-          <Link to="contact">contact</Link>
+          <Link to="contact">{t('Contact')}</Link>
         </div>
         <div className="home text-sky-700">
           {' '}
-          <Link to="blog">Blog</Link>
+          <Link to="blog">{t('Blog')}</Link>
         </div>
       </div>
 
@@ -40,7 +40,7 @@ export default function Footer({ setDirection }) {
           className="language py-2 px-4 bg-sky-700 text-white font-roboto rounded-3xl shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 w-1/2/6"
         >
           {' '}
-          English
+          {t('English')}
         </button>
         <button
           onClick={() => {
@@ -51,7 +51,7 @@ export default function Footer({ setDirection }) {
           className="language py-2 px-4 bg-sky-700 text-white font-roboto rounded-3xl shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 w-1/2/6"
         >
           {' '}
-          Arabic
+          {t('Arabic')}
         </button>
         <button
           onClick={() => {
@@ -62,7 +62,7 @@ export default function Footer({ setDirection }) {
           className="language py-2 px-4 bg-sky-700 text-white font-roboto rounded-3xl shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 w-1/2/6"
         >
           {' '}
-          Kurdish
+          {t('Kurdish')}
         </button>
       </div>
     </div>

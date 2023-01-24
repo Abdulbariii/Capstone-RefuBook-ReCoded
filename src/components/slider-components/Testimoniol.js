@@ -1,5 +1,6 @@
 import React from 'react'
 
+import { useTranslation } from 'react-i18next';
 import SwiperCore, { Autoplay, EffectCoverflow, Pagination, Navigation } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.min.css';
@@ -13,33 +14,34 @@ SwiperCore.use([EffectCoverflow, Pagination]);
 
 function Testimoniol({ bgColor, textColor }) {
 
+    const { t } = useTranslation('common');
 
     const testimonials = [
         {
             id: 1,
-            testimonial: " I was completely lost and did not know how to take the next step, but helped me every step of the way . The has been very helpful to me throughout my whole journey.",
-            personName: "Carmen,",
-            personJob: "Employee at a Company"
+            testimonial: t('TestimonialOneText'),
+            personName: t('TestimonialOneName'),
+            personJob: t('TestimonialOneJob')
         },
         {
             id: 2,
-            testimonial: "This website was a game changer for me and my family. We were able to find legal assistance and support thanks to the resources provided. We are so grateful.",
-            personName: "Nasim,",
-            personJob: "a carpenter"
+            testimonial: t('TestimonialTwoText'),
+            personName: t('TestimonialTwoName'),
+            personJob: t('TestimonialTwoJob')
 
         },
 
         {
             id: 3,
-            testimonial: "I cannot express in words how thankful I am for the services provided to me.I was in extreme emotional and psychological distress when I came.",
-            personName: "Emeka,",
-            personJob: "Student at university"
+            testimonial: t('TestimonialThreeText'),
+            personName: t('TestimonialThreeName'),
+            personJob: t('TestimonialThreeJob')
         },
         {
             id: 4,
-            testimonial: "The information and resources provided on this website helped me and my family navigate the asylum process. We are now living in safety and security.",
-            personName: " Fatima,",
-            personJob: "a nurse"
+            testimonial: t('TestimonialFourText'),
+            personName: t('TestimonialFourName'),
+            personJob: t('TestimonialFourJob')
 
         }
     ]

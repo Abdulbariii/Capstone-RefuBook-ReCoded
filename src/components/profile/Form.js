@@ -2,6 +2,7 @@
 /* eslint-disable no-unneeded-ternary */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import {
@@ -16,6 +17,7 @@ import { updateUser } from '../../features/userSlice';
 import { auth, db } from '../../firebase';
 
 export default function Form({ setEditForm, photo, imageUrl }) {
+  const { t } = useTranslation('common');
   const user = useSelector((state) => state.user);
   const [currentUser] = useAuthState(auth);
   const [name, setName] = useState(user.name);
@@ -76,7 +78,7 @@ export default function Form({ setEditForm, photo, imageUrl }) {
     >
       <div className="lg:flex lg:flex-row lg:justify-between lg:gap-6">
         <div className="lg:flex lg:flex-col lg:w-1/2">
-          <h2 className="text-left text-[#4699C2] font-bold py-2">Name: </h2>
+          <h2 className="text-left text-[#4699C2] font-bold py-2">{t('Name')}</h2>
           <div className="border border-gray-300 rounded-md">
             <input
               type="text"
@@ -89,7 +91,7 @@ export default function Form({ setEditForm, photo, imageUrl }) {
         </div>
 
         <div className="lg:flex lg:flex-col lg:w-1/2">
-          <h2 className="text-left text-[#4699C2] font-bold py-2">Surname: </h2>
+          <h2 className="text-left text-[#4699C2] font-bold py-2">{t('Surname')}</h2>
           <div className="border border-gray-300 rounded-md">
             <input
               type="text"
@@ -102,7 +104,7 @@ export default function Form({ setEditForm, photo, imageUrl }) {
         </div>
       </div>
 
-      <h2 className="text-left text-[#4699C2] font-bold py-2">Biograhpy: </h2>
+      <h2 className="text-left text-[#4699C2] font-bold py-2">{t('Biography')}</h2>
       <div className="border border-gray-300 rounded-md">
         <textarea
           value={biography}
@@ -113,7 +115,7 @@ export default function Form({ setEditForm, photo, imageUrl }) {
         </textarea>
       </div>
 
-      <h2 className="text-left text-[#4699C2] font-bold py-2">Location: </h2>
+      <h2 className="text-left text-[#4699C2] font-bold py-2">{t('Location')}</h2>
       <div className="border border-gray-300 rounded-md">
         <input
           placeholder={user.location}
@@ -126,7 +128,7 @@ export default function Form({ setEditForm, photo, imageUrl }) {
       <div className="flex flex-row justify-center py-4">
         <input
           type="submit"
-          value="SAVE"
+          value={t('Save')}
           className="bg-[#4699C2] cursor-pointer text-white fong-bold w-24 py-3 rounded-full mx-4 font-bold hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
         />
         <input
@@ -134,7 +136,7 @@ export default function Form({ setEditForm, photo, imageUrl }) {
             setEditForm(false);
           }}
           type="reset"
-          value="CANCEL"
+          value={t('Cancel')}
           className="bg-[#4699C2] cursor-pointer lg:bg-white hover:bg-[#026FC2] hover:text-white hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 focus:text-white active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out text-white lg:text-[#4699C2] lg:border lg:border-[#4699C2] fong-bold w-24 py-3 rounded-full font-bold"
         />
       </div>

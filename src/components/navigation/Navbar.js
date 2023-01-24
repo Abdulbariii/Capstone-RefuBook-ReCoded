@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { useTranslation } from 'react-i18next';
 import { NavLink } from 'react-router-dom';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useSelector } from 'react-redux';
@@ -8,6 +9,7 @@ import { auth } from '../../firebase';
 import { NavbarAvatar, Logo } from './NavSvg';
 
 export default function Navbar() {
+  const { t } = useTranslation('common');
   const [burgerStatus, setBurgerStatus] = useState(false);
   const [user] = useAuthState(auth);
   const userInfo = useSelector((state) => state.user);
@@ -44,7 +46,7 @@ export default function Navbar() {
         <div className="text-[#026FC2] lg:flex items-center justify-center hidden">
           <Logo />
           <p className="text-[#4699C2] text-base leading-[18.75px] lg:text-xl lg:leading-[23.44px] font-bold mr-3 ml-1.5 ">
-            Refubook
+            {t('refubook')}
           </p>
         </div>
 
@@ -95,7 +97,7 @@ export default function Navbar() {
               }
               to="/"
             >
-              Home
+              {t('Home')}
             </NavLink>
 
             <NavLink
@@ -107,7 +109,7 @@ export default function Navbar() {
               }
               to="/about"
             >
-              About
+              {t('about')}
             </NavLink>
 
             <NavLink
@@ -119,7 +121,7 @@ export default function Navbar() {
               }
               to="/blog"
             >
-              Blog
+              {t('Blog')}
             </NavLink>
 
             {user && (
@@ -132,7 +134,7 @@ export default function Navbar() {
                 }
                 to="/write"
               >
-                Write
+                {t('Write')}
               </NavLink>
             )}
 
@@ -146,7 +148,7 @@ export default function Navbar() {
                 }
                 to="/community"
               >
-                Community
+                {t('Community')}
               </NavLink>
             )}
 
@@ -160,7 +162,7 @@ export default function Navbar() {
                 }
                 to="/profile"
               >
-                Profile
+                {t('Profile')}
               </NavLink>
             )}
 
@@ -173,7 +175,7 @@ export default function Navbar() {
               }
               to="/contact"
             >
-              Contact
+              {t('Contact')}
             </NavLink>
 
             {/* <div className='hidden lg:block '> */}
@@ -192,7 +194,7 @@ export default function Navbar() {
                     type="button"
                     className="inline-block   px-7 py-1.5  bg-[#4699C2] text-white font-bold text-sm rounded-[50px] shadow-md hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
                   >
-                    Sign up
+                    {t('signup')}
                   </button>
                 )}
                 {user && (
@@ -204,7 +206,7 @@ export default function Navbar() {
                     type="button"
                     className="inline-block   px-7 py-1.5  bg-[#4699C2] text-white font-bold text-sm rounded-[50px] shadow-md hover:bg-[#026FC2] hover:shadow-lg focus:bg-[#026FC2] focus:shadow-lg focus:outline-none focus:ring-0 active:bg-[#026FC2] active:shadow-lg transition duration-150 ease-in-out"
                   >
-                    Sign out
+                    {t('SignOut')}
                   </button>
                 )}
               </NavLink>

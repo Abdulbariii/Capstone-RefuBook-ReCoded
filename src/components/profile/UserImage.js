@@ -1,5 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { storage } from '../../firebase';
 import EditPen from '../../assets/EditPen';
@@ -21,19 +22,20 @@ export default function UserImage({
       const name = new Date().getTime() + photo.name;
       const storageRef = ref(storage, `Avatars/${name}`);
       const uploadTask = uploadBytesResumable(storageRef, photo);
+      const { t } = useTranslation('common');
 
       uploadTask.on(
         'state_changed',
         (snapshot) => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log(`Upload is ${progress}'% done`);
+          console.log(`t('UploadIs') ${progress}'% t('Done')`);
           switch (snapshot.state) {
             case 'paused':
-              console.log('Upload is paused');
+              console.log(t('UploadPause'));
               break;
             case 'running':
-              console.log('Upload is running');
+              console.log(t('UploadRunning'));
               break;
             default:
               break;
