@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import AbdulbariImg from '../../assets/images/AbdulbariImage.jpg';
 import WafaImg from '../../assets/images/Wafaa_Alhayek_Palestine_2022.jpeg';
 import Shahla from '../../assets/images/shahla.jpg'
+import Hani from '../../assets/images/Hani.jpg'
 
 export default function Members() {
   const { t } = useTranslation('common');
@@ -28,8 +29,7 @@ export default function Members() {
       name: t('Hani'),
       location: t('KRIIraq'),
       desc: t('SoftwareEngineer'),
-      image:
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDe-uOj0YtwteyEVNQtNRw3sCn_EWJuMeGYbPzbVGoAb5Euz6Fh_krKHNp5PSknTIEMfg&usqp=CAU',
+      image: Hani,
     },
     {
       id: 4,
