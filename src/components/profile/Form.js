@@ -34,7 +34,7 @@ export default function Form({ setEditForm, photo, imageUrl }) {
       surname,
       biography,
       location,
-      photo: imageUrl && imageUrl,
+      photo: imageUrl,
     });
     dispatch(
       updateUser({
@@ -42,7 +42,7 @@ export default function Form({ setEditForm, photo, imageUrl }) {
         surname,
         biography,
         location,
-        photo: imageUrl && imageUrl,
+        photo: imageUrl,
       })
     );
 
@@ -55,7 +55,7 @@ export default function Form({ setEditForm, photo, imageUrl }) {
         if (doc.data().uid === currentUser.uid) {
           batch.update(doc.ref, {
             Username: `${name} ${surname}`,
-            userImg: photo || imageUrl,
+            userImg: imageUrl,
           });
         }
       });
@@ -78,7 +78,9 @@ export default function Form({ setEditForm, photo, imageUrl }) {
     >
       <div className="lg:flex lg:flex-row lg:justify-between lg:gap-6">
         <div className="lg:flex lg:flex-col lg:w-1/2">
-          <h2 className="text-left text-[#4699C2] font-bold py-2">{t('Name')}</h2>
+          <h2 className="text-left text-[#4699C2] font-bold py-2">
+            {t('Name')}
+          </h2>
           <div className="border border-gray-300 rounded-md">
             <input
               type="text"
@@ -91,7 +93,9 @@ export default function Form({ setEditForm, photo, imageUrl }) {
         </div>
 
         <div className="lg:flex lg:flex-col lg:w-1/2">
-          <h2 className="text-left text-[#4699C2] font-bold py-2">{t('Surname')}</h2>
+          <h2 className="text-left text-[#4699C2] font-bold py-2">
+            {t('Surname')}
+          </h2>
           <div className="border border-gray-300 rounded-md">
             <input
               type="text"
@@ -104,7 +108,9 @@ export default function Form({ setEditForm, photo, imageUrl }) {
         </div>
       </div>
 
-      <h2 className="text-left text-[#4699C2] font-bold py-2">{t('Biography')}</h2>
+      <h2 className="text-left text-[#4699C2] font-bold py-2">
+        {t('Biography')}
+      </h2>
       <div className="border border-gray-300 rounded-md">
         <textarea
           value={biography}
@@ -115,7 +121,9 @@ export default function Form({ setEditForm, photo, imageUrl }) {
         </textarea>
       </div>
 
-      <h2 className="text-left text-[#4699C2] font-bold py-2">{t('Location')}</h2>
+      <h2 className="text-left text-[#4699C2] font-bold py-2">
+        {t('Location')}
+      </h2>
       <div className="border border-gray-300 rounded-md">
         <input
           placeholder={user.location}
